@@ -1,0 +1,16 @@
+{
+  "name": "toeic-speaking-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A timed speaking exam in the format of the whole TOEIC Speaking test (Questions 1–11), one version for each of 14 articles, with automatic recording and the teacher's Google Apps Script.",
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test",
+    "gs": "node scripts/exam-gs.mjs && node scripts/split-gs.mjs",
+    "version": "node scripts/version.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
