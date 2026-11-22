@@ -12,34 +12,33 @@ otro.
 | Parte | Qué hace | Tiempo |
 | --- | --- | --- |
 | **Questions 1–2** · Read a text aloud | Lee en voz alta dos fragmentos del artículo | cada uno: 45 s para preparar · 45 s para leer |
-| **Question 3** · Describe a picture | Describe una foto del artículo | 30 s para preparar · 1 min para hablar |
-| **Questions 4–6** · Respond to questions | Una entrevista telefónica sobre el tema del artículo: tres preguntas | sin preparación · 1 min cada una |
-| **Questions 7–9** · Respond using information | Un gráfico con los datos del artículo; responde tres preguntas de alguien que llama | 30 s para leer · responde en 15 s, 15 s y 30 s |
-| **Question 10** · Propose a solution | Un mensaje de voz con un problema del artículo; responde en el papel que le toca | 30 s para preparar · 60 s para hablar |
+| **Questions 3–4** · Describe a picture | Describe dos fotos, una en cada pregunta | cada una: 30 s para preparar · 1 min para hablar |
+| **Questions 5–7** · Respond to questions | Una entrevista telefónica sobre el tema del artículo: tres preguntas | sin preparación · 1 min cada una |
+| **Questions 8–10** · Respond using information | Un gráfico con los datos del artículo; responde tres preguntas de alguien que llama | 30 s para leer · responde en 15 s, 15 s y 30 s |
 | **Question 11** · Express an opinion | Su opinión sobre el debate del artículo | 15 s para preparar · 60 s para hablar |
 
-Son **11 respuestas grabadas**: de 0 a 3 puntos las Questions 1–9 y de 0 a 5 la 10 y la 11, **37 puntos** en total. El
+Son **11 respuestas grabadas**: de 0 a 3 puntos las Questions 1–10 y de 0 a 5 la 11, **35 puntos** en total. El
 examen dura unos 17 minutos. Las consignas se oyen (voz del navegador) y se leen en pantalla.
 
-- **El texto, la foto y el gráfico aparecen cuando empieza su reloj**, así todos tienen el mismo tiempo. El texto y la
-  foto quedan en pantalla mientras responden.
-- **Questions 7–9: el gráfico no desaparece.** Queda en pantalla hasta el final de la parte, pero **lo que dice quien
+- **Cada texto, cada foto y el gráfico aparecen cuando empieza su reloj**, así todos tienen el mismo tiempo. El texto y
+  la foto quedan en pantalla mientras responden.
+- **Questions 8–10: el gráfico no desaparece.** Queda en pantalla hasta el final de la parte, pero **lo que dice quien
   llama y las preguntas solo se oyen, no se ven**. La consigna se lo avisa a los estudiantes.
-- **Questions 10 y 11:** el mensaje de voz y el tema se ven mientras escuchan y preparan, y **desaparecen cuando empieza
-  el tiempo de respuesta**.
+- **Question 11:** el tema se ve mientras lo escuchan y preparan, y **desaparece cuando empieza el tiempo de
+  respuesta**.
 - **El reloj** es un anillo que se vacía: azul mientras leen o preparan, rojo mientras graba. Se pone ámbar en los
   últimos 10 segundos y parpadea en los últimos 5.
 - **El micrófono** se pide una vez, en la prueba antes de empezar. Después graba solo en cada *Response time*.
 - **No se pierde nada.** Cada grabación se guarda en el navegador y se envía enseguida; si se corta internet, se
   reintenta. Al final el estudiante ve “✓ Sent” en cada respuesta.
 - **Si se recarga la página**, el examen sigue desde la pregunta que estaba respondiendo, sin repetir el tiempo de
-  lectura del gráfico ni volver a mostrar el mensaje o el tema que ya desaparecieron. La planilla cuenta los reinicios y
+  lectura del gráfico ni volver a mostrar el tema que ya desapareció. La planilla cuenta los reinicios y
   las veces que el estudiante salió de la página.
 
 ## Las 14 versiones
 
-Todo sale de cada artículo: los dos textos son fragmentos del artículo, la foto es la del artículo (con su crédito), y
-las preguntas, el gráfico, el problema y el tema de opinión son sobre lo que cuenta el artículo.
+Todo sale de los artículos: los dos textos son fragmentos del artículo, y las preguntas, el gráfico y el tema de
+opinión son sobre lo que cuenta el artículo. Las dos fotos son del artículo, con su crédito. Ninguna foto se repite.
 
 | Versión | Artículo |
 | --- | --- |
@@ -57,6 +56,19 @@ las preguntas, el gráfico, el problema y el tema de opinión son sobre lo que c
 | 12 | Burnt out: is the exhausting cult of productivity finally over? |
 | 13 | ‘Where do they expect us to go?’ Life at one Bay Area encampment before eviction |
 | 14 | How do we know that the climate crisis is to blame for extreme weather? |
+
+Seis versiones toman la segunda foto (Question 4) de otro artículo con un tema parecido: los artículos 4, 5, 10 y 11
+tienen una sola foto que sirve, y las otras fotos del artículo 9 son de una persona que intentó suicidarse, que no es
+para describir en un examen. La 12 le dio sus dos fotos libres a la 10 y a la 11, que encajaban mejor.
+
+| Versión | Segunda foto | Del artículo |
+| --- | --- | --- |
+| 4 | Una señora con un cartel en una protesta, entre jóvenes con pañuelos naranjas | 7 |
+| 5 | Un hombre sentado en la entrada de su carpa | 1 |
+| 9 | Ruth Day, estudiante que ayudó a organizar una protesta por más apoyo psicológico | 8 |
+| 10 | Una ilustración: un hombre con muchos teléfonos | 12 |
+| 11 | Gente trabajando en una oficina | 12 |
+| 12 | Un hombre con su perro en una plaza de Lisboa | 7 |
 
 ### Una versión distinta para cada estudiante
 
@@ -88,7 +100,7 @@ también queda anotada. Las demos (*Try it*) no gastan versiones.
 3. **En el examen, abrí la página Teacher** (`…/#teacher`, código **6060**). Pegá la URL, tocá *Test* y después *Save*.
    - Ahí están el link para los estudiantes y los links por versión.
    - También hay una **vista previa** de cada paso de cada versión (sin grabar nada) y las 14 versiones completas
-     (con lo que dice quien llama y las preguntas 7–9, que los estudiantes solo oyen).
+     (con lo que dice quien llama y las preguntas 8–10, que los estudiantes solo oyen, y de qué artículo es cada foto).
    - Para no tener que pegar la URL en cada computadora, también podés ponerla en [`js/config.js`](js/config.js)
      (`SCRIPT_URL`).
 
@@ -100,8 +112,8 @@ también queda anotada. Las demos (*Try it*) no gastan versiones.
 
 | Hoja | Qué tiene |
 | --- | --- |
-| **Exams** | Una fila por estudiante: inicio, nombre, **versión**, estado, respuestas, fin, veces que salió de la página, reinicios, **total** (suma automática, de 37) y la carpeta de sus audios |
-| **Responses** | Una fila por respuesta: pregunta, enunciado, segundos, **▶ Listen** (el audio en tu Drive), **Score** (la celda acepta solo de 0 a 3, o de 0 a 5 en la 10 y la 11), *Out of* y *Comments* |
+| **Exams** | Una fila por estudiante: inicio, nombre, **versión**, estado, respuestas, fin, veces que salió de la página, reinicios, **total** (suma automática, de 35) y la carpeta de sus audios |
+| **Responses** | Una fila por respuesta: pregunta, enunciado, segundos, **▶ Listen** (el audio en tu Drive), **Score** (la celda acepta solo de 0 a 3, o de 0 a 5 en la 11), *Out of* y *Comments* |
 | **Versions** | Quién tiene cada versión, y su artículo |
 | **Rubric** | Criterios de cada puntaje, con las escalas del TOEIC Speaking |
 
@@ -109,7 +121,8 @@ Los audios quedan en *Speaking Test — Recordings / nombre · V7 · código*.
 
 ## Cambiar el examen
 
-Lo que pregunta cada versión está en [`js/versions.js`](js/versions.js) y las fotos en [`img/`](img/). Los relojes
+Lo que pregunta cada versión está en [`js/versions.js`](js/versions.js) y las fotos en [`img/`](img/) (`vNN.jpg` es
+la de la Question 3 y `vNNb.jpg` la de la Question 4). Los relojes
 están en [`js/format.js`](js/format.js), y las consignas cambian solas con ellos. Después:
 
 ```bash

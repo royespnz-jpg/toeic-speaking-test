@@ -21,7 +21,7 @@
  */
 
 const APP = 'Speaking Test';
-const VERSION = 1;
+const VERSION = 2;
 const ROOT_FOLDER = 'Speaking Test — Recordings';
 /* exam:start */
 /* The recorded answers (id, label, highest score) and the article of each version.
@@ -36,7 +36,7 @@ const ANSWERS = [
   ["q7","Question 7",3],
   ["q8","Question 8",3],
   ["q9","Question 9",3],
-  ["q10","Question 10",5],
+  ["q10","Question 10",3],
   ["q11","Question 11",5],
 ];
 const ARTICLES = [
@@ -86,8 +86,8 @@ const SHEETS = {
   rubric: {
     name: 'Rubric',
     headers: [
-      'Score', 'Questions 1–2 · read aloud (0–3)', 'Question 3 · picture (0–3)', 'Questions 4–6 (0–3)',
-      'Questions 7–9 (0–3)', 'Question 10 (0–5)', 'Question 11 (0–5)',
+      'Score', 'Questions 1–2 · read aloud (0–3)', 'Questions 3–4 · pictures (0–3)', 'Questions 5–7 (0–3)',
+      'Questions 8–10 · graph (0–3)', 'Question 11 · opinion (0–5)',
     ],
   },
 };

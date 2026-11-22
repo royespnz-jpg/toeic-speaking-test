@@ -19,7 +19,7 @@
  */
 
 const APP = 'Speaking Test';
-const VERSION = 1;
+const VERSION = 2;
 const ROOT_FOLDER = 'Speaking Test — Recordings';
 /* exam:start */
 /* The recorded answers (id, label, highest score) and the article of each version.
@@ -34,7 +34,7 @@ const ANSWERS = [
   ["q7","Question 7",3],
   ["q8","Question 8",3],
   ["q9","Question 9",3],
-  ["q10","Question 10",5],
+  ["q10","Question 10",3],
   ["q11","Question 11",5],
 ];
 const ARTICLES = [
@@ -84,8 +84,8 @@ const SHEETS = {
   rubric: {
     name: 'Rubric',
     headers: [
-      'Score', 'Questions 1–2 · read aloud (0–3)', 'Question 3 · picture (0–3)', 'Questions 4–6 (0–3)',
-      'Questions 7–9 (0–3)', 'Question 10 (0–5)', 'Question 11 (0–5)',
+      'Score', 'Questions 1–2 · read aloud (0–3)', 'Questions 3–4 · pictures (0–3)', 'Questions 5–7 (0–3)',
+      'Questions 8–10 · graph (0–3)', 'Question 11 · opinion (0–5)',
     ],
   },
 };
@@ -95,16 +95,12 @@ const VE = { student: 2, version: 3 };
 
 /* ✂ */
 
-/* The scales of the TOEIC Speaking test: 0–3 for Questions 1–9, 0–5 for 10 and 11. */
+/* The scales of the TOEIC Speaking test: 0–3 for Questions 1–10, 0–5 for Question 11. */
 const RUBRIC = [
   ['5', '—', '—', '—', '—',
-    'Shows clearly that the problem is understood and proposes a suitable, well-developed solution, ' +
-      'in the role given. Sustained, well organized and easy to understand; good grammar and vocabulary.',
     'States a clear opinion and supports it with relevant reasons and examples. Sustained, coherent ' +
       'and easy to understand; good grammar and vocabulary.'],
   ['4', '—', '—', '—', '—',
-    'Recognizes the problem and proposes a solution, but with less development or small lapses in ' +
-      'organization, grammar or pronunciation. Still easy to follow.',
     'States an opinion and supports it, but with less development or small lapses in organization, ' +
       'grammar or pronunciation. Still easy to follow.'],
   ['3',
@@ -115,8 +111,6 @@ const RUBRIC = [
     'A full, relevant and appropriate answer. Easy to understand; appropriate vocabulary and grammar.',
     'Complete, accurate and appropriate: gives the information the question asks for, taken correctly ' +
       'from the information on the screen. Easy to understand.',
-    'Tries to deal with the problem, but the recognition or the solution is limited or vague. Pauses ' +
-      'or errors sometimes make the meaning unclear.',
     'States an opinion, but the support is limited, vague or repetitive. Pauses or errors sometimes ' +
       'make the meaning unclear.'],
   ['2',
@@ -125,7 +119,6 @@ const RUBRIC = [
     'Connected to the picture, but the meaning is sometimes unclear; limited vocabulary or grammar.',
     'Answers the question, but not completely; some parts are hard to understand, or the language is limited.',
     'Connected to the question, but incomplete or partly inaccurate; or it takes some effort to understand.',
-    'Mentions the problem or a solution only minimally. Limited language; often hard to follow.',
     'Gives an opinion with little or no support. Limited language; often hard to follow.'],
   ['1',
     'Intelligible only at times: serious problems with pronunciation, intonation or stress.',
@@ -133,14 +126,12 @@ const RUBRIC = [
     'Does not answer the question effectively: little relevant information, or hard to understand.',
     'Does not answer the question effectively: the information is wrong or mostly missing, or it is ' +
       'hard to understand.',
-    'Isolated words or phrases; does not deal with the task.',
     'Isolated words or phrases; no clear opinion.'],
   ['0',
     'No answer, or no English.',
     'No answer, no English, or an answer that is not connected to the picture.',
     'No answer, no English, or an answer that is not connected to the question.',
     'No answer, no English, or an answer that is not connected to the question.',
-    'No answer, no English, or an answer that is not connected to the message.',
     'No answer, no English, or an answer that is not connected to the topic.'],
 ];
 

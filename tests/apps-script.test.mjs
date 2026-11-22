@@ -136,18 +136,22 @@ test('setup makes the sheets, the rubric and the Drive folder', () => {
     'Started', 'Student', 'Version', 'Status', 'Answers', 'Finished', 'Left the page', 'Restarts', `Total (of ${TOTAL_POINTS})`, 'Folder', 'Attempt',
   ]);
   assert.deepEqual(sheets.get('Versions').data[0], ['Given', 'Student', 'Version', 'Article']);
-  // The rubric: a row for each score from 5 to 0, a column for each kind of question; Questions 1–9 stop at 3.
+  // The rubric: a row for each score from 5 to 0, a column for each part; Questions 1–10 stop at 3.
   const rubric = sheets.get('Rubric').data;
   assert.deepEqual(rubric.map((r) => r[0]), ['Score', '5', '4', '3', '2', '1', '0']);
-  assert.equal(rubric[0].length, 7);
+  assert.deepEqual(rubric[0], [
+    'Score', 'Questions 1–2 · read aloud (0–3)', 'Questions 3–4 · pictures (0–3)', 'Questions 5–7 (0–3)',
+    'Questions 8–10 · graph (0–3)', 'Question 11 · opinion (0–5)',
+  ]);
   assert.deepEqual(rubric[1].slice(1, 5), ['—', '—', '—', '—']);
-  assert.ok(rubric.slice(1).every((r) => r.length === 7 && r.every((cell) => String(cell).length > 0)));
+  assert.ok(rubric.slice(1).every((r) => r.length === 6 && r.every((cell) => String(cell).length > 0)));
+  assert.ok(!JSON.stringify(rubric).includes('solution'), 'no Question 10 «propose a solution»');
   // Running setup again rewrites the rubric instead of adding rows twice.
   ctx.setup();
   assert.equal(sheets.get('Rubric').data.length, 7);
   assert.ok(folders.has(ROOT));
   const info = JSON.parse(ctx.doGet().body);
-  assert.deepEqual(info, { ok: true, app: 'Speaking Test', sheet: 'Speaking Test 2026', version: 1, versions: 14 });
+  assert.deepEqual(info, { ok: true, app: 'Speaking Test', sheet: 'Speaking Test 2026', version: 2, versions: 14 });
   assert.equal(info.app, SCRIPT_APP, 'the Teacher page knows this script by its name');
   assert.ok(info.version >= SCRIPT_VERSION, 'the page works with this script');
 });
@@ -221,10 +225,11 @@ test('an exam: start, eleven answers in the student’s folder, finish', () => {
   const responses = sheets.get('Responses');
   assert.equal(responses.data.length, 12);
   assert.deepEqual(responses.data[1].slice(1, 6), ['Ana Pérez', 2, 'Question 1', 'Prompt of q1', 45]);
-  assert.deepEqual(responses.data.slice(1).map((row) => row[8]), [3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5], 'the highest score of each answer');
+  assert.deepEqual(responses.data.slice(1).map((row) => row[8]), [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5], 'the highest score of each answer');
   assert.match(responses.formulas.get('2,7'), /^=HYPERLINK\("https:\/\/drive\/file\/0","▶ Listen"\)$/);
   assert.deepEqual(plain(responses.rules.get('2,8')), { min: 0, max: 3, allowInvalid: false, help: 'A number from 0 to 3.' });
-  assert.equal(responses.rules.get('11,8').max, 5);
+  assert.equal(responses.rules.get('11,8').max, 3);
+  assert.equal(responses.rules.get('12,8').max, 5);
 
   assert.equal(post({ type: 'finish', ...who, leftPage: 1, resumed: 0, finishedAt: '2026-11-25T15:25:00Z' }).ok, true);
   const exam = sheets.get('Exams').data[1];

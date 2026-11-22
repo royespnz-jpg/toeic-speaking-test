@@ -1,16 +1,17 @@
 // What each version asks: one version for each of the teacher's 14 articles,
-// and everything in it comes from its article — the two texts to read aloud
-// (passages of the article), the picture (a photo from the article), the
-// interview, the graph of Questions 7–9 (the article's figures and facts), the
-// voice message of Question 10 (a problem the article describes) and the topic
-// of Question 11 (the article's debate). Every student gets a different one.
+// and everything in it comes from the articles — the two texts to read aloud
+// (passages of the article), the two pictures (photos from the article), the
+// interview, the graph of Questions 8–10 (the article's figures and facts) and
+// the topic of Question 11 (the article's debate). Every student gets a
+// different one.
 //
 //   read       Questions 1 and 2: two passages to read aloud
-//   picture    Question 3: the article's photo (img/vNN.jpg) and its credit
-//   interview  Questions 4–6: the context of a telephone interview and 3 questions
-//   info       Questions 7–9: the graph (a table, or bars with notes), the caller
+//   pictures   Questions 3 and 4: two photos (img/vNN.jpg, img/vNNb.jpg) and their
+//              credits. When an article has only one photo that works, the second
+//              comes from an article on a similar subject: `from` is its number.
+//   interview  Questions 5–7: the context of a telephone interview and 3 questions
+//   info       Questions 8–10: the graph (a table, or bars with notes), the caller
 //              and 3 questions — the questions are only heard, never shown
-//   solution   Question 10: who the student answers as, and the voice message
 //   opinion    Question 11: the topic
 
 const table = (title, rows, source) => ({ kind: 'table', title, rows, source });
@@ -24,7 +25,10 @@ export const VERSIONS = [
       'On Saturday, as tens of thousands of people took to the streets of Madrid to protest against the country’s deepening housing crisis, Marta García, a retired schoolteacher, was among a small group who took the protest one step further. “At first we were 10 tents,” she said. “Now, we’re more than 300 tents, and it keeps growing.”',
       '“We need stability,” said David Iglesias, 25. “People who want to have children should be able to do so, even if they are renting. People who dream of becoming musicians or barbers should have the chance to do so and not have to worry that they need to work, work, work to pay for housing.”',
     ],
-    picture: { file: 'v01.jpg', alt: 'A young man standing among tents covered with blue tarps in a city square', credit: 'Photograph: Ashifa Kassam/The Guardian' },
+    pictures: [
+      { file: 'v01.jpg', alt: 'A young man standing among tents covered with blue tarps in a city square', credit: 'Photograph: Ashifa Kassam/The Guardian' },
+      { file: 'v01b.jpg', alt: 'A woman raising her fist among tents and people in a busy city square', credit: 'Photograph: The Guardian' },
+    ],
     interview: {
       narrator: 'Imagine that a Spanish newspaper is preparing a report about housing. You have agreed to participate in a telephone interview about where you live.',
       questions: [
@@ -50,10 +54,6 @@ export const VERSIONS = [
         'What are the campaigners asking for, and what has the government promised to do?',
       ],
     },
-    solution: {
-      role: 'Respond as if you work at a tenants’ union in Madrid.',
-      message: 'Hi, this is Lucía Romero. I rent a small flat in Madrid, and my landlord has just told me that the rent will go up by almost a third next month. I can’t pay that much, and I’m afraid I’ll have to leave the home where I’ve lived for ten years. I heard about the protests in Puerta del Sol, but I don’t know what my rights are. Please call me back and tell me what I can do.',
-    },
     opinion: 'Some people believe governments should limit how much landlords can raise the rent. Do you agree or disagree?',
   },
   {
@@ -63,7 +63,10 @@ export const VERSIONS = [
       'When he was growing up, Connor, a young man in Ireland, watched as, one by one, his older siblings moved out of the family home in their early 20s. By the time he reached that age, however, the picture had changed dramatically. Now, in his social circle in Dublin, where rents have doubled since 2013, it has become the norm for people to live with their parents until they are in their mid-20s.',
       '“I’ve been looking for a flat for six months now with no success,” said Laura, who works in a managerial role. “I’m looking to live on my own for a rent of €1,000. The other day I saw an ad for a €990-a-month flat with no windows.”',
     ],
-    picture: { file: 'v02.jpg', alt: 'A crowd of people marching in a city street with banners and signs', credit: 'Photograph: The Guardian' },
+    pictures: [
+      { file: 'v02.jpg', alt: 'A crowd of people marching in a city street with banners and signs', credit: 'Photograph: The Guardian' },
+      { file: 'v02b.jpg', alt: 'A young woman leaning on the railing of a balcony above a street', credit: 'Photograph: Guardian Community' },
+    ],
     interview: {
       narrator: 'Imagine that a European research agency is doing a study about young adults and housing. You have agreed to participate in a telephone interview.',
       questions: [
@@ -89,10 +92,6 @@ export const VERSIONS = [
         'What else do your notes say about rents and holiday rentals?',
       ],
     },
-    solution: {
-      role: 'Respond as if you work at a housing advice center.',
-      message: 'Hi, this is Sean Murphy. I’m twenty-six, I have a full-time job in Dublin, but I still live with my parents because rents are so high. I’ve been looking for a flat for six months, and everything I can afford is either too small or too far from my office. I really want to live on my own, but I don’t know where to start. Please call me back with some advice.',
-    },
     opinion: 'Some people believe young adults should move out of their parents’ home as soon as they start working. Do you agree or disagree?',
   },
   {
@@ -102,7 +101,10 @@ export const VERSIONS = [
       'Journalists of my generation have witnessed four major digital revolutions: the internet, social media, smartphones, and now, artificial intelligence. What fundamentally changes with AI is our relationship with the truth. For big tech companies, the boundary between truth and falsehood has vanished. This makes it essential to reaffirm the role of public-interest journalism.',
       'Quality journalism is the product of expertise guided by ethical standards: persuading sources to speak, painstakingly gathering eye-witness testimonies, cross-referencing, verifying and establishing facts. This process relies on reporting or investigative work – in other words, human effort in the field.',
     ],
-    picture: { file: 'v03.jpg', alt: 'A smiling young woman at a street protest holding up a hand-painted sign', credit: 'Photograph: Sarah Yenesel/EPA' },
+    pictures: [
+      { file: 'v03.jpg', alt: 'A smiling young woman at a street protest holding up a hand-painted sign', credit: 'Photograph: Sarah Yenesel/EPA' },
+      { file: 'v03b.jpg', alt: 'A close-up of a screen: a hand-shaped cursor clicks a glowing button that says “AI Slop”', credit: 'Photograph: The Guardian' },
+    ],
     interview: {
       narrator: 'Imagine that a media research company is doing a study about how people get their news. You have agreed to participate in a telephone interview.',
       questions: [
@@ -128,10 +130,6 @@ export const VERSIONS = [
         'Who is organising the event, and what will it talk about?',
       ],
     },
-    solution: {
-      role: 'Respond as if you work for an association of journalists.',
-      message: 'Hi, this is Paul Martin. I’m the editor of a small local newspaper. We’ve discovered that an AI website is publishing summaries of our articles without our permission, and since then fewer people are visiting our own site. Our reporters spend weeks on those stories, and now we’re losing readers and money. I don’t know what we can do about it. Please call me back to discuss how we can protect our work.',
-    },
     opinion: 'Some people believe AI tools will help people to be better informed. Others believe they will spread more false information. Which view do you agree with?',
   },
   {
@@ -141,7 +139,10 @@ export const VERSIONS = [
       'At last the fourth R is born. Articulation – speaking – is to join reading, writing and arithmetic in the education canon. The pundits call it oracy. The education secretary, Lucy Powell, wants a radical reform of the national curriculum in England to reduce “desktop” working in favour of verbal fluency and practical skills.',
       'Powell’s promotion of oracy means teaching young people once again to use the spoken word to their advantage. It is about conveying what one means clearly; listening, debating and handling disagreement. Speaking well means using eye contact and appropriately adjusting your tone of voice. It means politeness and tolerance.',
     ],
-    picture: { file: 'v04.jpg', alt: 'Secondary school students in uniform at their desks, one of them speaking', credit: 'Photograph: The Guardian' },
+    pictures: [
+      { file: 'v04.jpg', alt: 'Secondary school students in uniform at their desks, one of them speaking', credit: 'Photograph: The Guardian' },
+      { file: 'v04b.jpg', alt: 'An older woman holding a protest sign in a crowded street, with young people in orange scarves around her', credit: 'Photograph: Angel Garcia/Bloomberg/Getty Images', from: 7 },
+    ],
     interview: {
       narrator: 'Imagine that an education research group is doing a study about speaking skills. You have agreed to participate in a telephone interview about your school experience.',
       questions: [
@@ -167,10 +168,6 @@ export const VERSIONS = [
         'What does the plan want students to do more of, and what do your notes say about young people and phone calls?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are a teacher at a secondary school.',
-      message: 'Hi, this is Helen Carter. My son is in your class. He’s very good at maths, but he hates speaking in front of other people. Now every student has to give a presentation next week, and he’s so nervous that he says he doesn’t want to come to school that day. I want to help him, but I don’t know how. Please call me back so we can talk about what to do.',
-    },
     opinion: 'Some people believe speaking skills are more important for students than advanced maths. Do you agree or disagree?',
   },
   {
@@ -180,7 +177,10 @@ export const VERSIONS = [
       'Today it’s the probation officers, whose conference in Newcastle is launching a ballot for industrial action. Their caseloads overflowed long ago, but now thousands of prisoners released early – 2,000 this month – have been thrust upon them. The responsibility is overwhelming, with officers blamed for crimes their clients commit.',
       'Eleven hostels and seven halfway houses, places that help probation officers supervise released prisoners, have just closed for repairs and because of a lack of staff. Drug addiction and mental health problems untreated in prisons, coupled with cuts to education, training and rehabilitation, make prisoners even less prepared for release.',
     ],
-    picture: { file: 'v05.jpg', alt: 'A person walking past the high brick wall of a prison under a blue sky', credit: 'Photograph: The Guardian' },
+    pictures: [
+      { file: 'v05.jpg', alt: 'A person walking past the high brick wall of a prison under a blue sky', credit: 'Photograph: The Guardian' },
+      { file: 'v05b.jpg', alt: 'A smiling man sitting cross-legged at the entrance of a small tent', credit: 'Photograph: Ashifa Kassam/The Guardian', from: 1 },
+    ],
     interview: {
       narrator: 'Imagine that a British research company is doing a survey about public services. You have agreed to participate in a telephone interview.',
       questions: [
@@ -206,10 +206,6 @@ export const VERSIONS = [
         'What happened when the service was privatised, and what did the union decide about the pay offer?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are a manager at the probation service.',
-      message: 'Hi, this is Mark Davies. I’m a probation officer, and I’m calling because my caseload is far too big. This month, several prisoners who were released early were added to my list, and I don’t have time to meet all of them properly. Two of my colleagues are off sick, and I’m worried that someone could commit a new crime because we can’t supervise them. Please call me back to discuss what we can do.',
-    },
     opinion: 'Some people believe that sending people to prison is the best way to reduce crime. Do you agree or disagree?',
   },
   {
@@ -219,7 +215,10 @@ export const VERSIONS = [
       'In traditional societies, little to no food goes to waste. Every edible part of an animal or plant is utilised. Attitudes towards waste are very different in industrialised nations. The United Nations Environment Programme estimates that 17% of total global food production is wasted and around the same amount lost, meaning that around a third of food produced is not consumed.',
       'Appalled to discover how much food was going to waste in her country, in 2008 Selina Juul started a Facebook group called Stop Wasting Food. Within a fortnight it had gone viral, and just three months later she was approached by REMA 1000, the biggest discount chain in Denmark, who asked her to help them reduce their waste.',
     ],
-    picture: { file: 'v06.jpg', alt: 'A woman with light hair standing in a supermarket aisle holding food', credit: 'Photograph: Andreas Mikkel Hansen' },
+    pictures: [
+      { file: 'v06.jpg', alt: 'A woman with light hair standing in a supermarket aisle holding food', credit: 'Photograph: Andreas Mikkel Hansen' },
+      { file: 'v06b.jpg', alt: 'A large field covered with thousands of discarded red onions', credit: 'Photograph: Rubens Alarcon/Alamy' },
+    ],
     interview: {
       narrator: 'Imagine that a supermarket chain is doing research about food shopping habits. You have agreed to participate in a telephone interview.',
       questions: [
@@ -245,10 +244,6 @@ export const VERSIONS = [
         'What happened in the Danish shop with the bananas, and what do your notes say about canteens?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are the manager of a supermarket.',
-      message: 'Hi, this is Anna Nielsen. I’m a regular customer at your supermarket. Yesterday I saw an employee throwing away boxes of bananas and bread that looked perfectly fine to eat. It really upset me, because so much food is wasted while some families can’t afford to buy enough. I’d like to know if the store could do something different with the food it can’t sell. Please call me back.',
-    },
     opinion: 'Some people believe supermarkets should be required by law to give away the food they cannot sell. Do you agree or disagree?',
   },
   {
@@ -258,7 +253,10 @@ export const VERSIONS = [
       'When her husband took a tumble in the couple’s sixth-floor flat last year, Maria frantically wondered who she could call for help to lift him. In another building, another era, she might have dashed next door to ask a neighbour. But it wasn’t an option in her 11-unit building in central Lisbon, where tourist flats had proliferated and turned long-term residents into a rarity.',
       '“It’s very weird. Imagine, I have no neighbours, even though I’m in the middle of a big city,” said Alex, who lives in a building in Lisbon where every single other unit is rented via platforms such as Airbnb. “It’s like I live in a ghost place. There’s plenty of people, I just don’t know anybody.”',
     ],
-    picture: { file: 'v07.jpg', alt: 'Tourists pulling suitcases through a narrow street in an old city centre', credit: 'Photograph: Paco Freire/SOPA Images/LightRocket/Getty Images' },
+    pictures: [
+      { file: 'v07.jpg', alt: 'Tourists pulling suitcases through a narrow street in an old city centre', credit: 'Photograph: Paco Freire/SOPA Images/LightRocket/Getty Images' },
+      { file: 'v07b.jpg', alt: 'A yellow tram going up a steep, narrow street between old buildings', credit: 'Photograph: Ian Leyland/Guardian Community' },
+    ],
     interview: {
       narrator: 'Imagine that a tourism board is doing research about travel. You have agreed to participate in a telephone interview.',
       questions: [
@@ -282,10 +280,6 @@ export const VERSIONS = [
         'What is happening in the building with 120 flats?',
       ],
     },
-    solution: {
-      role: 'Respond as if you work for the city council in Lisbon.',
-      message: 'Hi, this is Maria Costa. I’ve lived in the same building in central Lisbon for thirty years, but now almost every flat is rented to tourists. There’s noise every night, people leave rubbish at the entrance, and last week a party went on until four in the morning. I don’t know any of my neighbours anymore, and I feel very alone. Please call me back and tell me what the city can do.',
-    },
     opinion: 'Some people believe cities should ban tourist flats in residential buildings. Do you agree or disagree?',
   },
   {
@@ -295,7 +289,10 @@ export const VERSIONS = [
       'When he started working at Brunel University London 19 years ago, Terry Vass, who is now head of security, recalls that most of his work involved breaking up drunken fights outside the bars and nightclub on campus. Over the two decades he has been in the job, he has noticed a shift. Now, an increasing number of calls are for mental health incidents.',
       'British universities are experiencing a surge in student anxiety, mental breakdowns and depression. The worst times are at the start of term, when students are adjusting to being away from home, or over the holidays, when the small number who remain on campus may feel lonely and isolated.',
     ],
-    picture: { file: 'v08.jpg', alt: 'An illustration of a blue head in profile with a tall pile of books on top, on a red background', credit: 'Illustration: Chris Clarke/Guardian Design' },
+    pictures: [
+      { file: 'v08.jpg', alt: 'An illustration of a blue head in profile with a tall pile of books on top, on a red background', credit: 'Illustration: Chris Clarke/Guardian Design' },
+      { file: 'v08b.jpg', alt: 'A light-coloured dog in a “Pets As Therapy” vest lying on a checked blanket', credit: 'Photograph: Alamy', small: true },
+    ],
     interview: {
       narrator: 'Imagine that a university is doing research about student life. You have agreed to participate in a telephone interview.',
       questions: [
@@ -323,10 +320,6 @@ export const VERSIONS = [
         'How much debt do students usually have when they finish, and what do the other figures show?',
       ],
     },
-    solution: {
-      role: 'Respond as if you work at a university’s student support office.',
-      message: 'Hi, this is Sophie Turner. I’m a first-year student, and I’ve just moved away from home for the first time. I’m finding it really hard: I feel lonely, I’m worried about my exams, and I’m anxious about my student loan. I tried to book an appointment with a counselor, but the waiting list is several weeks long. Please call me back, because I don’t know who else to ask.',
-    },
     opinion: 'Some people believe universities are responsible for their students’ mental health. Do you agree or disagree?',
   },
   {
@@ -336,7 +329,10 @@ export const VERSIONS = [
       'Even as Japan’s youth population shrinks, indicators of distress — including school absenteeism, reported bullying and classroom violence — have reached historic highs. While Japan excels in physical health — with UNICEF ranking the nation first among wealthy countries — it ranks 32nd out of 36 when it comes to mental well-being.',
       '“With the major environmental shift of returning to school, interpersonal issues like bullying can resurface, while academic burdens and anxiety over future paths often intensify,” says Takashi Nagasawa, chief of child and adolescent psychiatry at Tokyo Metropolitan Children’s Medical Center. He urges adults to remain vigilant during these periods.',
     ],
-    picture: { file: 'v09.jpg', alt: 'A man speaking at a lectern in a conference hall, with a large screen behind him', credit: 'Photograph: courtesy of Takashi Nagasawa' },
+    pictures: [
+      { file: 'v09.jpg', alt: 'A man speaking at a lectern in a conference hall, with a large screen behind him', credit: 'Photograph: courtesy of Takashi Nagasawa' },
+      { file: 'v09b.jpg', alt: 'A young person in a green hooded sweatshirt standing beside stone columns', credit: 'Photograph: Adrian Sherratt/The Guardian', from: 8, small: true },
+    ],
     interview: {
       narrator: 'Imagine that a school in your area is doing research about student well-being. You have agreed to participate in a telephone interview.',
       questions: [
@@ -362,10 +358,6 @@ export const VERSIONS = [
         'What pressures do students face when they go back to school, and where can they find free help?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are a school counselor.',
-      message: 'Hi, this is Yuki Tanaka. My daughter goes to your school, and the new term starts next week. She has been very quiet and worried for days. She says some classmates were unkind to her last term, and she’s also anxious about her exams and her future. I want to help her, but I don’t know how to start the conversation. Could you please call me back to talk about what we can do?',
-    },
     opinion: 'Some people believe schools should give as much attention to students’ mental health as to their grades. Do you agree or disagree?',
   },
   {
@@ -375,7 +367,10 @@ export const VERSIONS = [
       'Banning smartphones at school does not by itself improve academic grades and children’s wellbeing, a study suggests. Researchers from the University of Birmingham did find that spending longer on phones and social media in general was linked to lower grades, poor sleep, disruptive behaviour and a lack of exercise. But these outcomes did not differ between schools that banned phones and those that did not.',
       'Dr Victoria Goodyear, the study’s lead author, told the BBC that school phone bans were not an effective way to tackle the negative impacts of overusing phones. She said: “What we’re suggesting is that those bans in isolation are not enough to tackle the negative impact. We need to do more than just ban phones in schools.”',
     ],
-    picture: { file: 'v10.jpg', alt: 'A student in a school uniform holding a smartphone over an open exercise book', credit: 'Photograph: The Guardian' },
+    pictures: [
+      { file: 'v10.jpg', alt: 'A student in a school uniform holding a smartphone over an open exercise book', credit: 'Photograph: The Guardian' },
+      { file: 'v10b.jpg', alt: 'An illustration of a man holding several old telephone receivers, surrounded by coloured dots', credit: 'Illustration: The Guardian', from: 12 },
+    ],
     interview: {
       narrator: 'Imagine that a technology company is doing research about smartphone use. You have agreed to participate in a telephone interview.',
       questions: [
@@ -401,10 +396,6 @@ export const VERSIONS = [
         'What problems are linked to spending more time on phones, and what do the researchers recommend?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are the head teacher of a secondary school.',
-      message: 'Hi, this is David Brown. My daughter is in Year 9 at your school. Since the school banned phones, she’s been fine during the day, but now she spends hours on her phone every evening and she isn’t sleeping well. Her grades are going down, and we argue about it every night. I’d like some advice on how the school and our family can work together. Please call me back.',
-    },
     opinion: 'Some people believe phones should be banned in all schools. Do you agree or disagree?',
   },
   {
@@ -414,7 +405,10 @@ export const VERSIONS = [
       'When Keir Starmer was 14 years old, he got a part-time job clearing stones from a local farmer’s field. At 16, Kemi Badenoch was flipping burgers and cleaning toilets in McDonald’s. Me, I waitressed at weekends from the age of 15 in an Essex pub.',
       'School leavers are now competing for work stacking shelves or pulling pints with overqualified new graduates who can’t find graduate jobs, at a time when pubs, shops and cafes don’t seem to be hiring. Even those employers strong enough to have survived lockdown routinely complain that it’s getting too expensive to hire staff – especially young ones.',
     ],
-    picture: { file: 'v11.jpg', alt: 'An illustration of two young workers: a waiter carrying a tray and a lifeguard holding a life ring', credit: 'Illustration: The Guardian' },
+    pictures: [
+      { file: 'v11.jpg', alt: 'An illustration of two young workers: a waiter carrying a tray and a lifeguard holding a life ring', credit: 'Illustration: The Guardian' },
+      { file: 'v11b.jpg', alt: 'People sitting and working in a colourful office with round seats and tree trunks', credit: 'Photograph: Google', from: 12 },
+    ],
     interview: {
       narrator: 'Imagine that an employment agency is doing research about young people and work. You have agreed to participate in a telephone interview.',
       questions: [
@@ -440,10 +434,6 @@ export const VERSIONS = [
         'What do your figures say about young people’s unemployment and about living with their parents?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are the manager of a café.',
-      message: 'Hi, this is Jack Wilson. I’m eighteen, and I’ve just finished school. I’ve applied for more than twenty jobs in shops, pubs and cafés, but nobody has called me back. Most places say they want someone with experience, but how can I get experience if nobody gives me a first job? I’d really like to work at your café. Please call me back and tell me what I can do.',
-    },
     opinion: 'Some people believe teenagers should have a part-time job while they are still at school. Do you agree or disagree?',
   },
   {
@@ -453,7 +443,10 @@ export const VERSIONS = [
       'In the US, they call it “hustle culture”: the idea that the ideal person for the modern age is one who is always on, always at work, always grafting. Your work is your life, and when you are not doing your hustle, you have a side hustle. Like all the world’s worst ideas, it started in Silicon Valley.',
       'The tech companies’ attitudes have migrated into other “status” sectors, together with the workplaces that look like a kind of grownup soft-play, all colourful sofas and ping-pong and hot meals. In finance, food has become such a sign of pastoral care that Goldman Sachs recently sent junior employees hampers to make up for their 100-hour working weeks.',
     ],
-    picture: { file: 'v12.jpg', alt: 'A tired man in an office holding his head, next to tall piles of paper and a telephone', credit: 'Photograph: The Guardian' },
+    pictures: [
+      { file: 'v12.jpg', alt: 'A tired man in an office holding his head, next to tall piles of paper and a telephone', credit: 'Photograph: Bob Scott/Getty Images' },
+      { file: 'v12b.jpg', alt: 'A man standing with his black dog in a small square with colourful graffiti on the walls', credit: 'Photograph: The Guardian', from: 7 },
+    ],
     interview: {
       narrator: 'Imagine that a human resources company is doing research about working life. You have agreed to participate in a telephone interview.',
       questions: [
@@ -481,10 +474,6 @@ export const VERSIONS = [
         'How did some of the people in the article change their working lives during the pandemic?',
       ],
     },
-    solution: {
-      role: 'Respond as if you are a manager at a large company.',
-      message: 'Hi, this is Laura Smith from the finance team. For the last few months, I’ve been working more than sixty hours a week, including most weekends. I’m exhausted, I can’t sleep well, and I hardly see my family. The free lunches and the fruit baskets are nice, but they don’t solve the problem. I’d like to talk about my workload before things get worse. Please call me back.',
-    },
     opinion: 'Some people believe working long hours is necessary to be successful. Do you agree or disagree?',
   },
   {
@@ -494,7 +483,10 @@ export const VERSIONS = [
       'Sarah and her partner, Kevin, both 55, have lived in the scattered encampments along this stretch of busy highway in Berkeley, California, for years now. They’ve had to pack up several times, moving from one camp to the next as authorities cleared plot after plot. Last month, a federal judge ruled officials could remove the last remaining tents by 4 May.',
       'In many ways, the plight of this encampment is the story of homelessness in California. Its residents have been evicted several times over the past years, disassembling and reassembling their lives each time. Many have spent years on waitlists for subsidized apartments but are nowhere near to landing a stable home.',
     ],
-    picture: { file: 'v13.jpg', alt: 'A woman sitting among her belongings at a camp beside a highway', credit: 'Photograph: Preston Gannaway/The Guardian' },
+    pictures: [
+      { file: 'v13.jpg', alt: 'A woman sitting among her belongings at a camp beside a highway', credit: 'Photograph: Preston Gannaway/The Guardian' },
+      { file: 'v13b.jpg', alt: 'Tents and piles of belongings under large trees at a camp', credit: 'Photograph: Preston Gannaway/The Guardian' },
+    ],
     interview: {
       narrator: 'Imagine that a city council is doing research about housing and public services. You have agreed to participate in a telephone interview.',
       questions: [
@@ -520,10 +512,6 @@ export const VERSIONS = [
         'How did the state transport agency plan to spend its money on the camps?',
       ],
     },
-    solution: {
-      role: 'Respond as if you work at a social services office in Berkeley.',
-      message: 'Hi, this is Denise Harper. I’ve been living in a tent near the highway with my partner for two years, and we’ve just been told we have to leave the camp by next week. We were offered beds at a shelter, but my partner has a health condition, and we can’t sleep in a big room with fifty other people. We don’t know where to go. Please call me back and tell me what we can do.',
-    },
     opinion: 'Some people believe cities should provide free housing for people who live on the streets. Do you agree or disagree?',
   },
   {
@@ -533,7 +521,10 @@ export const VERSIONS = [
       'It is a crucial question: is the climate crisis to blame for the extreme weather disasters taking lives and destroying homes around the world? But it has not been an easy one to answer. How much is due to global heating, how much is just the severe weather that has always happened?',
       'The good news is that the scientific techniques used to untangle that question – called climate attribution – are now well established. The bad news is what they reveal: heatwaves, floods and storms are now hitting communities with a severity and frequency never seen during the entire development of human civilisation.',
     ],
-    picture: { file: 'v14.jpg', alt: 'A fire truck on dry land in front of a wide line of flames and smoke', credit: 'Photograph: Thomas Cudy' },
+    pictures: [
+      { file: 'v14.jpg', alt: 'A fire truck on dry land in front of a wide line of flames and smoke', credit: 'Photograph: Thomas Cudy' },
+      { file: 'v14b.jpg', alt: 'A river in flood rushing past a town with a tall church tower', credit: 'Photograph: The Guardian' },
+    ],
     interview: {
       narrator: 'Imagine that an environmental organization is doing research about the weather in different countries. You have agreed to participate in a telephone interview.',
       questions: [
@@ -559,10 +550,6 @@ export const VERSIONS = [
         'I read that only about half of the heatwave studies found that global heating made them worse. Is that right?',
         'What did the studies find about droughts and floods?',
       ],
-    },
-    solution: {
-      role: 'Respond as if you work for the local council.',
-      message: 'Hi, this is Tom Evans. I live near the river in the town centre. Last week, after two days of heavy rain, the river flooded our street for the second time this year. The water came into our kitchen, and the repairs will be very expensive. Our insurance company says it may not cover us next time. What is the council going to do to protect our homes? Please call me back.',
     },
     opinion: 'Some people believe individuals can do a lot to stop climate change. Others believe only governments and companies can make a difference. Which view do you agree with?',
   },
