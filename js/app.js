@@ -1,10 +1,10 @@
-import { PARTS, PART_ORDER, RESPONSES, INTRO, TOTAL_POINTS, buildTimeline, timedSeconds, responseOf, resumeIndex } from './format.js?v=202611220046';
-import { VERSIONS, versionOf, pickVersion, barValue } from './versions.js?v=202611220046';
-import { clockHtml, runClock, idleClock, fmt } from './clock.js?v=202611220046';
-import { unlockAudio, beep, speak, stopSpeaking, openMicrophone, closeMicrophone, levelMeter, startRecording } from './audio.js?v=202611220046';
-import { scriptUrl, saveScriptUrl, isScriptUrl, ping, post, report, enqueue, onUpload, pendingUploads, resumeUploads } from './api.js?v=202611220046';
-import { saveRecording, allRecordings } from './store.js?v=202611220046';
-import { TEACHER_CODE, SCRIPT_VERSION, SCRIPT_APP } from './config.js?v=202611220046';
+import { PARTS, PART_ORDER, RESPONSES, INTRO, TOTAL_POINTS, buildTimeline, timedSeconds, responseOf, resumeIndex } from './format.js?v=202611220055';
+import { VERSIONS, versionOf, pickVersion, barValue } from './versions.js?v=202611220055';
+import { clockHtml, runClock, idleClock, fmt } from './clock.js?v=202611220055';
+import { unlockAudio, beep, speak, stopSpeaking, openMicrophone, closeMicrophone, levelMeter, startRecording } from './audio.js?v=202611220055';
+import { scriptUrl, saveScriptUrl, isScriptUrl, ping, post, report, enqueue, onUpload, pendingUploads, resumeUploads } from './api.js?v=202611220055';
+import { saveRecording, allRecordings } from './store.js?v=202611220055';
+import { TEACHER_CODE, SCRIPT_VERSION, SCRIPT_APP } from './config.js?v=202611220055';
 
 const app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -389,13 +389,29 @@ function listening(step) {
 
 let running = false;
 
+// The pictures of the version start loading with the exam, and are kept here so they
+// stay loaded. A picture's clock doesn't start until the picture is on the screen
+// (5 seconds at most, so a picture that can't load never stops the exam).
+const preloaded = [];
+function preloadPictures(v) {
+  for (const picture of v.pictures) {
+    const img = new Image();
+    img.src = `img/${picture.file}`;
+    preloaded.push(img);
+  }
+}
+function pictureShown(task, ms = 5000) {
+  const img = task.querySelector('.picture img');
+  if (!img) return Promise.resolve();
+  return Promise.race([img.decode().catch(() => {}), new Promise((resolve) => setTimeout(resolve, ms))]);
+}
+
 async function runExam() {
   running = true;
   examShell();
   keepAwake();
   const v = versionOf(S.version);
-  // The pictures are ready before their clocks start.
-  for (const picture of v.pictures) new Image().src = `img/${picture.file}`;
+  preloadPictures(v);
   const clock = app.querySelector('.clock');
   const recEl = app.querySelector('[data-rec]');
   if (S.stepIndex === 0) report({ type: 'start', attempt: S.attempt, student: S.student, version: S.version, demo: DEMO || SCALE < 1, startedAt: new Date().toISOString(), userAgent: navigator.userAgent });
@@ -430,6 +446,7 @@ async function runExam() {
       setCue(step.say);
       await speak(step.say);
       show(taskHtml(step, v));
+      await pictureShown(task);
       setCue(step.cue || (step.part === 'read' ? 'Read the text silently and prepare.' : 'Prepare your answer.'), 'prep');
       await runClock(clock, step.seconds, { mode: 'prep', phase, sub: step.sub || 'Prepare' }).done;
     } else if (step.type === 'response') {
@@ -438,6 +455,7 @@ async function runExam() {
         setCue(step.say);
         await speak(step.say);
       }
+      await pictureShown(task);
       await beep();
       const rec = startRecording();
       recEl.hidden = false;
