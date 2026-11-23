@@ -77,17 +77,22 @@ export const INTRO =
   'The test runs by itself: the clock shows how much time you have for each step. ' +
   'Your microphone turns on when it is time to speak and turns off when the time is up. You cannot pause or go back.';
 
-// The recorded answers, in order, and the highest score of each (the scales of
-// the TOEIC Speaking test: 0–3 for Questions 1–10, 0–5 for Question 11).
-const answer = (n, part, max) => ({ id: `q${n}`, part, label: `Question ${n}`, short: String(n), max });
+// The recorded answers, in order, and the highest score of each: the course's
+// scoring guide for the whole test (59 points; the teacher's script has it on
+// its «Rubric» tab). Questions 1–2 are scored together, both readings, on two
+// criteria: pronunciation goes in Question 1's score and stress and intonation
+// in Question 2's. Each picture's score adds three criteria (4 + 3 + 3).
+// `scoring` says so next to the score of those answers on the teacher's sheet.
+const answer = (n, part, max, scoring = '') => ({ id: `q${n}`, part, label: `Question ${n}`, short: String(n), max, scoring });
+const PICTURE_SCORE = 'This picture: relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3).';
 export const RESPONSES = [
-  answer(1, 'read', 3),
-  answer(2, 'read', 3),
-  answer(3, 'picture', 3),
-  answer(4, 'picture', 3),
-  answer(5, 'interview', 3),
-  answer(6, 'interview', 3),
-  answer(7, 'interview', 3),
+  answer(1, 'read', 5, 'Questions 1–2, both readings: pronunciation and intelligibility.'),
+  answer(2, 'read', 5, 'Questions 1–2, both readings: stress, intonation, rhythm, and pausing.'),
+  answer(3, 'picture', 10, PICTURE_SCORE),
+  answer(4, 'picture', 10, PICTURE_SCORE),
+  answer(5, 'interview', 5),
+  answer(6, 'interview', 5),
+  answer(7, 'interview', 5),
   answer(8, 'info', 3),
   answer(9, 'info', 3),
   answer(10, 'info', 3),

@@ -40,12 +40,18 @@ test('the whole test: Questions 1–11 with the teacher’s clocks', () => {
   assert.deepEqual(steps().filter((x) => x.type === 'part').map((x) => x.part), PART_ORDER);
 });
 
-test('eleven recorded answers: 0–3 for Questions 1–10, 0–5 for Question 11', () => {
+test('eleven recorded answers scored with the course’s scoring guide: 59 points', () => {
   assert.deepEqual(RESPONSES.map((r) => r.id), ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11']);
   assert.deepEqual(RESPONSES.map((r) => r.part), ['read', 'read', 'picture', 'picture', 'interview', 'interview', 'interview', 'info', 'info', 'info', 'opinion']);
-  assert.deepEqual(RESPONSES.map((r) => r.max), [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5]);
-  assert.equal(TOTAL_POINTS, 35);
+  // Questions 1–2: 5 + 5 (two criteria, both readings) · 3 and 4: 10 each · 5–7: 5 each · 8–10: 3 each · 11: 5.
+  assert.deepEqual(RESPONSES.map((r) => r.max), [5, 5, 10, 10, 5, 5, 5, 3, 3, 3, 5]);
+  assert.equal(TOTAL_POINTS, 59);
   for (const r of RESPONSES) assert.match(r.id, /^[\w-]+$/);
+  // The answers whose score needs saying what goes in it: one criterion of both readings, or a picture's three.
+  assert.match(RESPONSES[0].scoring, /both readings: pronunciation and intelligibility/);
+  assert.match(RESPONSES[1].scoring, /both readings: stress, intonation, rhythm, and pausing/);
+  for (const r of RESPONSES.slice(2, 4)) assert.match(r.scoring, /\(0–4\) \+ .*\(0–3\) \+ .*\(0–3\)/);
+  assert.deepEqual(RESPONSES.slice(4).map((r) => r.scoring), Array(7).fill(''));
 });
 
 test('the directions say the same clocks, and what is heard but not seen', () => {

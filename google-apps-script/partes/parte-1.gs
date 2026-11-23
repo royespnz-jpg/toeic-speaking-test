@@ -21,23 +21,23 @@
  */
 
 const APP = 'Speaking Test';
-const VERSION = 2;
+const VERSION = 3;
 const ROOT_FOLDER = 'Speaking Test — Recordings';
 /* exam:start */
-/* The recorded answers (id, label, highest score) and the article of each version.
+/* The recorded answers (id, label, highest score, how to score) and the article of each version.
    Made from js/format.js and js/versions.js: npm run gs. */
 const ANSWERS = [
-  ["q1","Question 1",3],
-  ["q2","Question 2",3],
-  ["q3","Question 3",3],
-  ["q4","Question 4",3],
-  ["q5","Question 5",3],
-  ["q6","Question 6",3],
-  ["q7","Question 7",3],
-  ["q8","Question 8",3],
-  ["q9","Question 9",3],
-  ["q10","Question 10",3],
-  ["q11","Question 11",5],
+  ["q1","Question 1",5,"Questions 1–2, both readings: pronunciation and intelligibility."],
+  ["q2","Question 2",5,"Questions 1–2, both readings: stress, intonation, rhythm, and pausing."],
+  ["q3","Question 3",10,"This picture: relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3)."],
+  ["q4","Question 4",10,"This picture: relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3)."],
+  ["q5","Question 5",5,""],
+  ["q6","Question 6",5,""],
+  ["q7","Question 7",5,""],
+  ["q8","Question 8",3,""],
+  ["q9","Question 9",3,""],
+  ["q10","Question 10",3,""],
+  ["q11","Question 11",5,""],
 ];
 const ARTICLES = [
   "‘It keeps growing’: the tent camp that stands against Spain’s housing crisis (The Guardian, 29 September 2026)",
@@ -60,7 +60,8 @@ const VERSION_COUNT = ARTICLES.length;
 const QUESTIONS = ANSWERS.map(function (a) { return a[0]; });
 const LABELS = {};
 const MAX = {};
-ANSWERS.forEach(function (a) { LABELS[a[0]] = a[1]; MAX[a[0]] = a[2]; });
+const SCORING = {};
+ANSWERS.forEach(function (a) { LABELS[a[0]] = a[1]; MAX[a[0]] = a[2]; SCORING[a[0]] = a[3] || ''; });
 const TOTAL = ANSWERS.reduce(function (n, a) { return n + a[2]; }, 0);
 const MAX_AUDIO_BYTES = 20 * 1024 * 1024;
 
@@ -85,10 +86,8 @@ const SHEETS = {
   },
   rubric: {
     name: 'Rubric',
-    headers: [
-      'Score', 'Questions 1–2 · read aloud (0–3)', 'Questions 3–4 · pictures (0–3)', 'Questions 5–7 (0–3)',
-      'Questions 8–10 · graph (0–3)', 'Question 11 · opinion (0–5)',
-    ],
+    /* A column for each criterion of RUBRIC (the next part). */
+    get headers() { return ['Score'].concat(RUBRIC.map(function (c) { return c[0]; })); },
   },
 };
 const EX = { version: 3, status: 4, answers: 5, finished: 6, left: 7, restarts: 8, total: 9, folder: 10, attempt: 11 };

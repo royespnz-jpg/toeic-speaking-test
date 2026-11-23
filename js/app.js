@@ -1,10 +1,10 @@
-import { PARTS, PART_ORDER, RESPONSES, INTRO, TOTAL_POINTS, buildTimeline, timedSeconds, responseOf, resumeIndex } from './format.js?v=202611220055';
-import { VERSIONS, versionOf, pickVersion, barValue } from './versions.js?v=202611220055';
-import { clockHtml, runClock, idleClock, fmt } from './clock.js?v=202611220055';
-import { unlockAudio, beep, speak, stopSpeaking, openMicrophone, closeMicrophone, levelMeter, startRecording } from './audio.js?v=202611220055';
-import { scriptUrl, saveScriptUrl, isScriptUrl, ping, post, report, enqueue, onUpload, pendingUploads, resumeUploads } from './api.js?v=202611220055';
-import { saveRecording, allRecordings } from './store.js?v=202611220055';
-import { TEACHER_CODE, SCRIPT_VERSION, SCRIPT_APP } from './config.js?v=202611220055';
+import { PARTS, PART_ORDER, RESPONSES, INTRO, TOTAL_POINTS, buildTimeline, timedSeconds, responseOf, resumeIndex } from './format.js?v=202611231724';
+import { VERSIONS, versionOf, pickVersion, barValue } from './versions.js?v=202611231724';
+import { clockHtml, runClock, idleClock, fmt } from './clock.js?v=202611231724';
+import { unlockAudio, beep, speak, stopSpeaking, openMicrophone, closeMicrophone, levelMeter, startRecording } from './audio.js?v=202611231724';
+import { scriptUrl, saveScriptUrl, isScriptUrl, ping, post, report, enqueue, onUpload, pendingUploads, resumeUploads } from './api.js?v=202611231724';
+import { saveRecording, allRecordings } from './store.js?v=202611231724';
+import { TEACHER_CODE, SCRIPT_VERSION, SCRIPT_APP } from './config.js?v=202611231724';
 
 const app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -623,7 +623,10 @@ function renderTeacher(message = '') {
     </section>
     <section class="card">
       <h2>4 · The ${VERSIONS.length} versions</h2>
-      <p class="muted small">One for each article. Questions 1–10 are scored 0–3; Question 11, 0–5 (${TOTAL_POINTS} points in all).</p>
+      <p class="muted small">One for each article. Scored with the course’s scoring guide (the «Rubric» tab of your sheet),
+        ${TOTAL_POINTS} points in all: Questions 1–2 together, both readings, 5 for pronunciation (in Question 1’s score) and 5
+        for stress and intonation (in Question 2’s); Questions 3 and 4, 10 each (4 + 3 + 3); Questions 5–7, 5 each;
+        Questions 8–10, 3 each; Question 11, 5.</p>
       ${VERSIONS.map(versionHtml).join('')}
     </section>
     <section class="card">

@@ -1,12 +1,19 @@
 /* ── Speaking Test · parte 3 de 6 ── */
 
+/* The Rubric tab's rows: each score from 5 to 0, and what it means for each criterion. */
+function rubricRows_() {
+  return ['5', '4', '3', '2', '1', '0'].map(function (score, i) {
+    return [score].concat(RUBRIC.map(function (c) { return c[1][i]; }));
+  });
+}
+
 function setup() {
   return withLock_(function () {
     /* The first row again, in case the exam changed (the total says how many points). */
     Object.keys(SHEETS).forEach(function (k) {
       sheet_(k).getRange(1, 1, 1, SHEETS[k].headers.length).setValues([SHEETS[k].headers]).setFontWeight('bold');
     });
-    reference_('rubric', RUBRIC);
+    reference_('rubric', rubricRows_());
     rootFolder_();
     const msg = 'Listo: hojas Exams, Responses, Versions y Rubric, y la carpeta «' + ROOT_FOLDER +
       '» en tu Drive. Ahora implementá la aplicación web.';

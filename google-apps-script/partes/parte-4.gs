@@ -81,7 +81,7 @@ function recording_(d) {
     ]);
     const last = sheet.getLastRow();
     sheet.getRange(last, RE.recording).setFormula('=HYPERLINK("' + url + '","▶ Listen")');
-    scoreRule_(sheet.getRange(last, RE.score), MAX[d.qid]);
+    scoreRule_(sheet.getRange(last, RE.score), MAX[d.qid], SCORING[d.qid]);
     const exams = sheet_('exams');
     const row = findRow_(exams, EX.attempt, who.attempt);
     if (row) exams.getRange(row, EX.answers).setValue(countResponses_(sheet, who.attempt));

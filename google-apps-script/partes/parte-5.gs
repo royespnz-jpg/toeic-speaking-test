@@ -12,14 +12,15 @@ function person_(d) {
 }
 
 /* The score cell only takes a number from 0 to the highest score of its
-   question. If the rule can’t be set, the answer is saved all the same. */
-function scoreRule_(range, max) {
+   question, and says what to score when the question needs it. If the rule
+   can’t be set, the answer is saved all the same. */
+function scoreRule_(range, max, scoring) {
   try {
     range.setDataValidation(
       SpreadsheetApp.newDataValidation()
         .requireNumberBetween(0, max)
         .setAllowInvalid(false)
-        .setHelpText('A number from 0 to ' + max + '.')
+        .setHelpText((scoring ? scoring + ' ' : '') + 'A number from 0 to ' + max + '.')
         .build()
     );
   } catch (err) {
@@ -36,6 +37,14 @@ function reference_(key, rows) {
   }
   sheet.getRange(1, 1, 1, headers.length).setValues([headers]).setFontWeight('bold');
   sheet.getRange(2, 1, rows.length, rows[0].length).setValues(rows);
+  /* Long descriptors: wrapped, from the top of each cell. */
+  try {
+    sheet.getRange(1, 1, rows.length + 1, headers.length).setWrap(true).setVerticalAlignment('top');
+    sheet.setColumnWidth(1, 60);
+    sheet.setColumnWidths(2, headers.length - 1, 300);
+  } catch (err) {
+    Logger.log('Rubric format: ' + err.message);
+  }
 }
 
 function sheet_(key) {

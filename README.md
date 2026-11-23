@@ -17,8 +17,18 @@ otro.
 | **Questions 8–10** · Respond using information | Un gráfico con los datos del artículo; responde tres preguntas de alguien que llama | 30 s para leer · responde en 15 s, 15 s y 30 s |
 | **Question 11** · Express an opinion | Su opinión sobre el debate del artículo | 15 s para preparar · 60 s para hablar |
 
-Son **11 respuestas grabadas**: de 0 a 3 puntos las Questions 1–10 y de 0 a 5 la 11, **35 puntos** en total. El
-examen dura unos 17 minutos. Las consignas se oyen (voz del navegador) y se leen en pantalla.
+Son **11 respuestas grabadas** y **59 puntos** en total, con la rúbrica del curso para todo el examen (la misma del
+*Scoring Guide* en PDF, que junta la del Speaking Exam y la del Quiz II):
+
+| Preguntas | Criterios | Puntos |
+| --- | --- | --- |
+| **1–2** · las dos lecturas juntas | *Pronunciation and Intelligibility* (va en el Score de la Question 1) y *Stress, Intonation, Rhythm, and Pausing* (en el de la Question 2) | 5 + 5 |
+| **3** y **4** · cada foto | *Relevant Details* (4) + *Delivery* (3) + *Vocabulary and Grammar* (3) | 10 + 10 |
+| **5–7** | *Respond to Questions*, cada una | 5 + 5 + 5 |
+| **8–10** | *Respond to Questions Using Information Provided*, cada una | 3 + 3 + 3 |
+| **11** | *Express an Opinion* | 5 |
+
+El examen dura unos 17 minutos. Las consignas se oyen (voz del navegador) y se leen en pantalla.
 
 - **Cada texto, cada foto y el gráfico aparecen cuando empieza su reloj**, así todos tienen el mismo tiempo. El texto y
   la foto quedan en pantalla mientras responden.
@@ -112,10 +122,10 @@ también queda anotada. Las demos (*Try it*) no gastan versiones.
 
 | Hoja | Qué tiene |
 | --- | --- |
-| **Exams** | Una fila por estudiante: inicio, nombre, **versión**, estado, respuestas, fin, veces que salió de la página, reinicios, **total** (suma automática, de 35) y la carpeta de sus audios |
-| **Responses** | Una fila por respuesta: pregunta, enunciado, segundos, **▶ Listen** (el audio en tu Drive), **Score** (la celda acepta solo de 0 a 3, o de 0 a 5 en la 11), *Out of* y *Comments* |
+| **Exams** | Una fila por estudiante: inicio, nombre, **versión**, estado, respuestas, fin, veces que salió de la página, reinicios, **total** (suma automática, de 59) y la carpeta de sus audios |
+| **Responses** | Una fila por respuesta: pregunta, enunciado, segundos, **▶ Listen** (el audio en tu Drive), **Score** (la celda acepta solo de 0 al máximo de esa pregunta y, al tocarla, dice qué calificar en las Questions 1–4), *Out of* y *Comments* |
 | **Versions** | Quién tiene cada versión, y su artículo |
-| **Rubric** | Criterios de cada puntaje, con las escalas del TOEIC Speaking |
+| **Rubric** | La rúbrica del curso para todo el examen: una columna por criterio y qué significa cada puntaje, de 5 a 0 |
 
 Los audios quedan en *Speaking Test — Recordings / nombre · V7 · código*.
 

@@ -15,15 +15,15 @@ import { VERSIONS } from '../js/versions.js';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'google-apps-script', 'Code.gs');
 
-// id, label and highest score of each recorded answer.
-export const answerRows = () => RESPONSES.map((r) => [r.id, r.label, r.max]);
+// id, label, highest score and how to score (or '') of each recorded answer.
+export const answerRows = () => RESPONSES.map((r) => [r.id, r.label, r.max, r.scoring]);
 // The article of each version, as the «Versions» tab names it.
 export const articleNames = () => VERSIONS.map((v) => `${v.article.title} (${v.article.outlet}, ${v.article.date})`);
 
 export function examBlock() {
   return [
     '/* exam:start */',
-    '/* The recorded answers (id, label, highest score) and the article of each version.',
+    '/* The recorded answers (id, label, highest score, how to score) and the article of each version.',
     '   Made from js/format.js and js/versions.js: npm run gs. */',
     `const ANSWERS = [\n${answerRows().map((row) => `  ${JSON.stringify(row)},`).join('\n')}\n];`,
     `const ARTICLES = [\n${articleNames().map((a) => `  ${JSON.stringify(a)},`).join('\n')}\n];`,

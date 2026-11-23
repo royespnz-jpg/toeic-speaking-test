@@ -14,7 +14,8 @@ export const TEACHER_CODE = '6060';
 
 // The google-apps-script/Code.gs this page expects (its doGet says which one
 // is deployed); with an older one the Teacher page asks for the update.
-export const SCRIPT_VERSION = 2;
+// 3: the course's scoring guide (59 points) on the score cells and the Rubric tab.
+export const SCRIPT_VERSION = 3;
 
 // What the teacher's script calls itself (its doGet says it): the Teacher page
 // uses it to tell this exam's script from another exam's.
