@@ -147,29 +147,30 @@ test('setup makes the sheets, the rubric and the Drive folder', () => {
     'Score',
     'Question 1 · Questions 1–2, both readings: Pronunciation and Intelligibility (0–5)',
     'Question 2 · Questions 1–2, both readings: Stress, Intonation, Rhythm, and Pausing (0–5)',
-    'Questions 3 and 4 · Relevant Details and Task Fulfillment (0–4 of each picture’s 10)',
-    'Questions 3 and 4 · Delivery, Fluency, and Intelligibility (0–3 of each picture’s 10)',
-    'Questions 3 and 4 · Vocabulary and Grammatical Structures (0–3 of each picture’s 10)',
-    'Questions 5–7 · Respond to Questions (0–5 each)',
-    'Questions 8–10 · Respond to Questions Using Information Provided (0–3 each)',
+    'Question 3 · Relevant Details and Task Fulfillment (0–4 of 10)',
+    'Question 3 · Delivery, Fluency, and Intelligibility (0–3 of 10)',
+    'Question 3 · Vocabulary and Grammatical Structures (0–3 of 10)',
+    'Questions 4–6 · Respond to Questions (0–5 each)',
+    'Questions 7–9 · Respond to Questions Using Information Provided (0–3 each)',
+    'Question 10 · Propose a Solution (0–5)',
     'Question 11 · Express an Opinion (0–5)',
   ]);
-  assert.ok(rubric.slice(1).every((r) => r.length === 9 && r.every((cell) => String(cell).length > 0)));
+  assert.ok(rubric.slice(1).every((r) => r.length === 10 && r.every((cell) => String(cell).length > 0)));
   // Each criterion describes the scores up to its highest one, and only those.
-  const top = [5, 5, 4, 3, 3, 5, 3, 5];
+  const top = [5, 5, 4, 3, 3, 5, 3, 5, 5];
   top.forEach((max, j) => rubric.slice(1).forEach((r) => assert.equal(r[j + 1] === '—', Number(r[0]) > max, `${rubric[0][j + 1]}: ${r[0]}`)));
-  // The criteria add up to the test's points: Questions 1–2 once, each picture twice (3 and 4), 5–7 and 8–10 three times.
-  assert.equal(5 + 5 + 2 * (4 + 3 + 3) + 3 * 5 + 3 * 3 + 5, TOTAL_POINTS);
+  // The criteria add up to the test's points: Questions 1–2 once, the picture's three, 4–6 and 7–9 three times, 10 and 11.
+  assert.equal(5 + 5 + (4 + 3 + 3) + 3 * 5 + 3 * 3 + 5 + 5, TOTAL_POINTS);
   assert.match(rubric[1][1], /^Pronunciation is consistently clear and highly intelligible\./);
-  assert.match(rubric[3][7], /^The response is a full, relevant, socially appropriate reply to the question\. Information from the prompt is accurate\.\n• The delivery requires little listener effort\./);
-  assert.match(rubric[1][8], /characterized by ALL of the following:\n• The speaker’s choice or opinion is supported/);
-  assert.ok(!JSON.stringify(rubric).includes('solution'), 'no Question 10 «propose a solution»');
+  assert.match(rubric[3][7], /^The response is a full, relevant, socially appropriate reply to the question\. In the case of Questions 7–9, information from the prompt is accurate\.\n• The delivery requires little listener effort\./);
+  assert.match(rubric[1][8], /^The response successfully completes all parts of the task .* ALL of the following:\n• The speaker plays the appropriate role/);
+  assert.match(rubric[1][9], /characterized by ALL of the following:\n• The speaker’s choice or opinion is supported/);
   // Running setup again rewrites the rubric instead of adding rows twice.
   ctx.setup();
   assert.equal(sheets.get('Rubric').data.length, 7);
   assert.ok(folders.has(ROOT));
   const info = JSON.parse(ctx.doGet().body);
-  assert.deepEqual(info, { ok: true, app: 'Speaking Test', sheet: 'Speaking Test 2026', version: 3, versions: 14 });
+  assert.deepEqual(info, { ok: true, app: 'Speaking Test', sheet: 'Speaking Test 2026', version: 4, versions: 14 });
   assert.equal(info.app, SCRIPT_APP, 'the Teacher page knows this script by its name');
   assert.ok(info.version >= SCRIPT_VERSION, 'the page works with this script');
 });
@@ -243,17 +244,19 @@ test('an exam: start, eleven answers in the student’s folder, finish', () => {
   const responses = sheets.get('Responses');
   assert.equal(responses.data.length, 12);
   assert.deepEqual(responses.data[1].slice(1, 6), ['Ana Pérez', 2, 'Question 1', 'Prompt of q1', 45]);
-  assert.deepEqual(responses.data.slice(1).map((row) => row[8]), [5, 5, 10, 10, 5, 5, 5, 3, 3, 3, 5], 'the highest score of each answer');
+  assert.deepEqual(responses.data.slice(1).map((row) => row[8]), [5, 5, 10, 5, 5, 5, 3, 3, 3, 5, 5], 'the highest score of each answer');
   assert.match(responses.formulas.get('2,7'), /^=HYPERLINK\("https:\/\/drive\/file\/0","▶ Listen"\)$/);
-  // The score cells of Questions 1–4 say what goes in them.
+  // The score cells of Questions 1–3 say what goes in them.
   assert.deepEqual(plain(responses.rules.get('2,8')), {
     min: 0, max: 5, allowInvalid: false, help: 'Questions 1–2, both readings: pronunciation and intelligibility. A number from 0 to 5.',
   });
   assert.equal(responses.rules.get('3,8').help, 'Questions 1–2, both readings: stress, intonation, rhythm, and pausing. A number from 0 to 5.');
-  assert.match(responses.rules.get('4,8').help, /^This picture: relevant details .* \(0–4\) \+ .* \(0–3\) \+ .* \(0–3\)\. A number from 0 to 10\.$/);
-  assert.equal(responses.rules.get('5,8').max, 10);
-  assert.deepEqual(plain(responses.rules.get('6,8')), { min: 0, max: 5, allowInvalid: false, help: 'A number from 0 to 5.' });
-  assert.deepEqual(plain(responses.rules.get('11,8')), { min: 0, max: 3, allowInvalid: false, help: 'A number from 0 to 3.' });
+  assert.equal(responses.rules.get('4,8').help,
+    'Relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3). A number from 0 to 10.');
+  assert.equal(responses.rules.get('4,8').max, 10);
+  assert.deepEqual(plain(responses.rules.get('5,8')), { min: 0, max: 5, allowInvalid: false, help: 'A number from 0 to 5.' });
+  assert.deepEqual(plain(responses.rules.get('8,8')), { min: 0, max: 3, allowInvalid: false, help: 'A number from 0 to 3.' });
+  assert.equal(responses.rules.get('11,8').max, 5);
   assert.equal(responses.rules.get('12,8').max, 5);
 
   assert.equal(post({ type: 'finish', ...who, leftPage: 1, resumed: 0, finishedAt: '2026-11-25T15:25:00Z' }).ok, true);

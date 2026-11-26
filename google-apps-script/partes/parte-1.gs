@@ -21,7 +21,7 @@
  */
 
 const APP = 'Speaking Test';
-const VERSION = 3;
+const VERSION = 4;
 const ROOT_FOLDER = 'Speaking Test — Recordings';
 /* exam:start */
 /* The recorded answers (id, label, highest score, how to score) and the article of each version.
@@ -29,14 +29,14 @@ const ROOT_FOLDER = 'Speaking Test — Recordings';
 const ANSWERS = [
   ["q1","Question 1",5,"Questions 1–2, both readings: pronunciation and intelligibility."],
   ["q2","Question 2",5,"Questions 1–2, both readings: stress, intonation, rhythm, and pausing."],
-  ["q3","Question 3",10,"This picture: relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3)."],
-  ["q4","Question 4",10,"This picture: relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3)."],
+  ["q3","Question 3",10,"Relevant details and task fulfillment (0–4) + delivery, fluency, and intelligibility (0–3) + vocabulary and grammatical structures (0–3)."],
+  ["q4","Question 4",5,""],
   ["q5","Question 5",5,""],
   ["q6","Question 6",5,""],
-  ["q7","Question 7",5,""],
+  ["q7","Question 7",3,""],
   ["q8","Question 8",3,""],
   ["q9","Question 9",3,""],
-  ["q10","Question 10",3,""],
+  ["q10","Question 10",5,""],
   ["q11","Question 11",5,""],
 ];
 const ARTICLES = [

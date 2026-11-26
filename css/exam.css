@@ -452,6 +452,44 @@ audio {
   background: var(--surface-2);
   color: var(--ink-2);
 }
+/* The general directions: each task and what it is evaluated on, as in the sample test */
+.criteria {
+  width: 100%;
+  max-width: 62ch;
+  margin-top: 16px;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface);
+  font-size: 0.95rem;
+}
+.criteria th,
+.criteria td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.criteria tr:last-child td {
+  border-bottom: 0;
+}
+.criteria th {
+  font: 600 0.75rem var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--surface-2);
+}
+.criteria td.q {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.criteria ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
 .reading {
   max-width: 64ch;
   padding: clamp(18px, 3vw, 32px);
@@ -862,7 +900,7 @@ details summary {
   font-size: 0.85rem;
 }
 
-/* Questions 8–10: the information the questions are about */
+/* Questions 7–9: the information the questions are about */
 .info-card {
   max-width: 62ch;
   margin-top: 16px;
@@ -925,7 +963,7 @@ details summary {
 .info-card dd {
   margin: 0;
 }
-/* Questions 8–10: the information while its reading clock runs, then each question
+/* Questions 7–9: the information while its reading clock runs, then each question
    alone (the information is gone: the students answer from memory). */
 .info-step h2 {
   font-size: clamp(1.25rem, 2.3vw, 1.7rem);
@@ -944,7 +982,52 @@ details summary {
   margin-top: 12px;
 }
 
-/* Question 11 while it is answered: the topic is gone */
+/* Question 10: who the student answers as, and the voice message */
+.role-card {
+  max-width: 60ch;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+.directions + .role-card {
+  margin-top: 14px;
+}
+.role-card p {
+  margin: 0 0 4px;
+}
+.role-card .role {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.role-card ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.voice-message {
+  max-width: 62ch;
+  margin-top: 16px;
+  padding: 18px 22px;
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+  line-height: 1.6;
+  animation: rise 0.45s var(--ease);
+}
+.voice-message span {
+  display: block;
+  margin-bottom: 6px;
+  font: 600 0.75rem var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.voice-message p {
+  margin: 0;
+}
+/* Questions 10 and 11 while they are answered: the message or the topic is gone */
 .gone {
   max-width: 62ch;
   margin: 16px 0 0;
@@ -972,7 +1055,8 @@ details summary {
   text-transform: uppercase;
   color: var(--accent);
 }
-.tv .info-card {
+.tv .info-card,
+.tv .voice-message {
   box-shadow: none;
   font-size: 1rem;
   animation: none;
@@ -1009,19 +1093,15 @@ details summary {
   line-height: 1.7;
 }
 
-/* Questions 3–4: the pictures and their credits. A picture is never stretched
-   past its own pixels, except a small one (.small), which is shown a bit larger;
-   the caption is as wide as the picture. */
+/* Question 3: the article's picture and its credit */
 .picture {
-  width: fit-content;
-  max-width: min(100%, 760px);
+  max-width: 760px;
   margin: 16px 0 0;
   animation: rise 0.45s var(--ease);
 }
 .picture img {
   display: block;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   max-height: min(62vh, 560px);
   object-fit: contain;
@@ -1029,16 +1109,13 @@ details summary {
   background: var(--surface-2);
   box-shadow: var(--shadow);
 }
-.picture.small img {
-  width: 600px;
-}
 .picture figcaption {
   margin-top: 6px;
   font-size: 0.8rem;
   color: var(--muted);
 }
 
-/* Questions 5–7: the interview */
+/* Questions 4–6: the interview */
 .task .narrator {
   margin: 14px 0 0;
 }
@@ -1052,7 +1129,7 @@ details summary {
   color: var(--muted);
 }
 
-/* Questions 8–10: a table of facts, or bars with notes */
+/* Questions 7–9: a table of facts, or bars with notes */
 .info-card h3 {
   margin: 0 0 10px;
   font-size: clamp(1.05rem, 1.8vw, 1.3rem);

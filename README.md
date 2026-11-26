@@ -12,43 +12,48 @@ otro.
 | Parte | Qué hace | Tiempo |
 | --- | --- | --- |
 | **Questions 1–2** · Read a text aloud | Lee en voz alta dos fragmentos del artículo | cada uno: 45 s para preparar · 45 s para leer |
-| **Questions 3–4** · Describe a picture | Describe dos fotos, una en cada pregunta | cada una: 30 s para preparar · 1 min para hablar |
-| **Questions 5–7** · Respond to questions | Una entrevista telefónica sobre el tema del artículo: tres preguntas | sin preparación · 1 min cada una |
-| **Questions 8–10** · Respond using information | Un gráfico con los datos del artículo; responde tres preguntas de alguien que llama | 30 s para leer · responde en 15 s, 15 s y 30 s |
+| **Question 3** · Describe a picture | Describe una foto del artículo | 30 s para preparar · 45 s para hablar |
+| **Questions 4–6** · Respond to questions | Una entrevista telefónica sobre el tema del artículo: tres preguntas | sin preparación · responde en 15 s, 15 s y 30 s |
+| **Questions 7–9** · Respond using information | Un gráfico con los datos del artículo; responde tres preguntas de alguien que llama | 30 s para leer · responde en 15 s, 15 s y 30 s |
+| **Question 10** · Propose a solution | Un mensaje de voz con un problema del artículo; responde en el papel que le toca | 30 s para preparar · 60 s para hablar |
 | **Question 11** · Express an opinion | Su opinión sobre el debate del artículo | 15 s para preparar · 60 s para hablar |
 
-Son **11 respuestas grabadas** y **59 puntos** en total, con la rúbrica del curso para todo el examen (la misma del
+Es el formato del *sample test* de ETS (TOEIC Speaking): las consignas son las suyas, y la pantalla de inicio tiene su
+tabla con la tarea de cada pregunta y lo que se evalúa.
+
+Son **11 respuestas grabadas** y **54 puntos** en total, con la rúbrica del curso para todo el examen (la misma del
 *Scoring Guide* en PDF, que junta la del Speaking Exam y la del Quiz II):
 
 | Preguntas | Criterios | Puntos |
 | --- | --- | --- |
 | **1–2** · las dos lecturas juntas | *Pronunciation and Intelligibility* (va en el Score de la Question 1) y *Stress, Intonation, Rhythm, and Pausing* (en el de la Question 2) | 5 + 5 |
-| **3** y **4** · cada foto | *Relevant Details* (4) + *Delivery* (3) + *Vocabulary and Grammar* (3) | 10 + 10 |
-| **5–7** | *Respond to Questions*, cada una | 5 + 5 + 5 |
-| **8–10** | *Respond to Questions Using Information Provided*, cada una | 3 + 3 + 3 |
+| **3** · la foto | *Relevant Details* (4) + *Delivery* (3) + *Vocabulary and Grammar* (3) | 10 |
+| **4–6** | *Respond to Questions*, cada una | 5 + 5 + 5 |
+| **7–9** | *Respond to Questions Using Information Provided*, cada una | 3 + 3 + 3 |
+| **10** | *Propose a Solution* | 5 |
 | **11** | *Express an Opinion* | 5 |
 
 El examen dura unos 17 minutos. Las consignas se oyen (voz del navegador) y se leen en pantalla.
 
-- **Cada texto, cada foto y el gráfico aparecen cuando empieza su reloj**, así todos tienen el mismo tiempo. El texto y
-  la foto quedan en pantalla mientras responden.
-- **Questions 8–10: el gráfico no desaparece.** Queda en pantalla hasta el final de la parte, pero **lo que dice quien
+- **El texto, la foto y el gráfico aparecen cuando empieza su reloj**, así todos tienen el mismo tiempo. El texto y la
+  foto quedan en pantalla mientras responden.
+- **Questions 7–9: el gráfico no desaparece.** Queda en pantalla hasta el final de la parte, pero **lo que dice quien
   llama y las preguntas solo se oyen, no se ven**. La consigna se lo avisa a los estudiantes.
-- **Question 11:** el tema se ve mientras lo escuchan y preparan, y **desaparece cuando empieza el tiempo de
-  respuesta**.
+- **Questions 10 y 11:** el mensaje de voz y el tema se ven mientras escuchan y preparan, y **desaparecen cuando empieza
+  el tiempo de respuesta**.
 - **El reloj** es un anillo que se vacía: azul mientras leen o preparan, rojo mientras graba. Se pone ámbar en los
   últimos 10 segundos y parpadea en los últimos 5.
 - **El micrófono** se pide una vez, en la prueba antes de empezar. Después graba solo en cada *Response time*.
 - **No se pierde nada.** Cada grabación se guarda en el navegador y se envía enseguida; si se corta internet, se
   reintenta. Al final el estudiante ve “✓ Sent” en cada respuesta.
 - **Si se recarga la página**, el examen sigue desde la pregunta que estaba respondiendo, sin repetir el tiempo de
-  lectura del gráfico ni volver a mostrar el tema que ya desapareció. La planilla cuenta los reinicios y
+  lectura del gráfico ni volver a mostrar el mensaje o el tema que ya desaparecieron. La planilla cuenta los reinicios y
   las veces que el estudiante salió de la página.
 
 ## Las 14 versiones
 
-Todo sale de los artículos: los dos textos son fragmentos del artículo, y las preguntas, el gráfico y el tema de
-opinión son sobre lo que cuenta el artículo. Las dos fotos son del artículo, con su crédito. Ninguna foto se repite.
+Todo sale de cada artículo: los dos textos son fragmentos del artículo, la foto es la del artículo (con su crédito), y
+las preguntas, el gráfico, el problema y el tema de opinión son sobre lo que cuenta el artículo.
 
 | Versión | Artículo |
 | --- | --- |
@@ -66,19 +71,6 @@ opinión son sobre lo que cuenta el artículo. Las dos fotos son del artículo, 
 | 12 | Burnt out: is the exhausting cult of productivity finally over? |
 | 13 | ‘Where do they expect us to go?’ Life at one Bay Area encampment before eviction |
 | 14 | How do we know that the climate crisis is to blame for extreme weather? |
-
-Seis versiones toman la segunda foto (Question 4) de otro artículo con un tema parecido: los artículos 4, 5, 10 y 11
-tienen una sola foto que sirve, y las otras fotos del artículo 9 son de una persona que intentó suicidarse, que no es
-para describir en un examen. La 12 le dio sus dos fotos libres a la 10 y a la 11, que encajaban mejor.
-
-| Versión | Segunda foto | Del artículo |
-| --- | --- | --- |
-| 4 | Una señora con un cartel en una protesta, entre jóvenes con pañuelos naranjas | 7 |
-| 5 | Un hombre sentado en la entrada de su carpa | 1 |
-| 9 | Ruth Day, estudiante que ayudó a organizar una protesta por más apoyo psicológico | 8 |
-| 10 | Una ilustración: un hombre con muchos teléfonos | 12 |
-| 11 | Gente trabajando en una oficina | 12 |
-| 12 | Un hombre con su perro en una plaza de Lisboa | 7 |
 
 ### Una versión distinta para cada estudiante
 
@@ -110,7 +102,7 @@ también queda anotada. Las demos (*Try it*) no gastan versiones.
 3. **En el examen, abrí la página Teacher** (`…/#teacher`, código **6060**). Pegá la URL, tocá *Test* y después *Save*.
    - Ahí están el link para los estudiantes y los links por versión.
    - También hay una **vista previa** de cada paso de cada versión (sin grabar nada) y las 14 versiones completas
-     (con lo que dice quien llama y las preguntas 8–10, que los estudiantes solo oyen, y de qué artículo es cada foto).
+     (con lo que dice quien llama y las preguntas 7–9, que los estudiantes solo oyen).
    - Para no tener que pegar la URL en cada computadora, también podés ponerla en [`js/config.js`](js/config.js)
      (`SCRIPT_URL`).
 
@@ -122,8 +114,8 @@ también queda anotada. Las demos (*Try it*) no gastan versiones.
 
 | Hoja | Qué tiene |
 | --- | --- |
-| **Exams** | Una fila por estudiante: inicio, nombre, **versión**, estado, respuestas, fin, veces que salió de la página, reinicios, **total** (suma automática, de 59) y la carpeta de sus audios |
-| **Responses** | Una fila por respuesta: pregunta, enunciado, segundos, **▶ Listen** (el audio en tu Drive), **Score** (la celda acepta solo de 0 al máximo de esa pregunta y, al tocarla, dice qué calificar en las Questions 1–4), *Out of* y *Comments* |
+| **Exams** | Una fila por estudiante: inicio, nombre, **versión**, estado, respuestas, fin, veces que salió de la página, reinicios, **total** (suma automática, de 54) y la carpeta de sus audios |
+| **Responses** | Una fila por respuesta: pregunta, enunciado, segundos, **▶ Listen** (el audio en tu Drive), **Score** (la celda acepta solo de 0 al máximo de esa pregunta y, al tocarla, dice qué calificar en las Questions 1–3), *Out of* y *Comments* |
 | **Versions** | Quién tiene cada versión, y su artículo |
 | **Rubric** | La rúbrica del curso para todo el examen: una columna por criterio y qué significa cada puntaje, de 5 a 0 |
 
@@ -131,8 +123,7 @@ Los audios quedan en *Speaking Test — Recordings / nombre · V7 · código*.
 
 ## Cambiar el examen
 
-Lo que pregunta cada versión está en [`js/versions.js`](js/versions.js) y las fotos en [`img/`](img/) (`vNN.jpg` es
-la de la Question 3 y `vNNb.jpg` la de la Question 4). Los relojes
+Lo que pregunta cada versión está en [`js/versions.js`](js/versions.js) y las fotos en [`img/`](img/). Los relojes
 están en [`js/format.js`](js/format.js), y las consignas cambian solas con ellos. Después:
 
 ```bash

@@ -1,10 +1,10 @@
-import { PARTS, PART_ORDER, RESPONSES, INTRO, TOTAL_POINTS, buildTimeline, timedSeconds, responseOf, resumeIndex } from './format.js?v=202611231724';
-import { VERSIONS, versionOf, pickVersion, barValue } from './versions.js?v=202611231724';
-import { clockHtml, runClock, idleClock, fmt } from './clock.js?v=202611231724';
-import { unlockAudio, beep, speak, stopSpeaking, openMicrophone, closeMicrophone, levelMeter, startRecording } from './audio.js?v=202611231724';
-import { scriptUrl, saveScriptUrl, isScriptUrl, ping, post, report, enqueue, onUpload, pendingUploads, resumeUploads } from './api.js?v=202611231724';
-import { saveRecording, allRecordings } from './store.js?v=202611231724';
-import { TEACHER_CODE, SCRIPT_VERSION, SCRIPT_APP } from './config.js?v=202611231724';
+import { PARTS, PART_ORDER, RESPONSES, CRITERIA, TOTAL_POINTS, buildTimeline, timedSeconds, responseOf, resumeIndex } from './format.js?v=202611260224';
+import { VERSIONS, versionOf, pickVersion, barValue } from './versions.js?v=202611260224';
+import { clockHtml, runClock, idleClock, fmt } from './clock.js?v=202611260224';
+import { unlockAudio, beep, speak, stopSpeaking, openMicrophone, closeMicrophone, levelMeter, startRecording } from './audio.js?v=202611260224';
+import { scriptUrl, saveScriptUrl, isScriptUrl, ping, post, report, enqueue, onUpload, pendingUploads, resumeUploads } from './api.js?v=202611260224';
+import { saveRecording, allRecordings } from './store.js?v=202611260224';
+import { TEACHER_CODE, SCRIPT_VERSION, SCRIPT_APP } from './config.js?v=202611260224';
 
 const app = document.getElementById('app');
 const params = new URLSearchParams(location.search);
@@ -14,7 +14,7 @@ const DEMO = params.has('demo');
 const SCALE = params.has('quick') ? 0.1 : 1;
 const SESSION = 'speakingfull.session';
 const NAME = 'Speaking Test';
-// What appears only when its clock starts: the texts, the pictures and the graph.
+// What appears only when its clock starts: the texts, the picture and the graph.
 const APPEARS_WITH_CLOCK = ['read', 'picture', 'info'];
 
 const esc = (s) =>
@@ -193,7 +193,7 @@ function renderCheck(resuming = false) {
         <h2>Once you start</h2>
         <ul>
           <li>The exam runs by itself. You can’t pause it or go back.</li>
-          <li>The questions are spoken. In Questions 8–10 you only hear them: the information stays on the screen, the
+          <li>The questions are spoken. In Questions 7–9 you only hear them: the information stays on the screen, the
             questions don’t.</li>
           <li>When the clock says <b>Response time</b>, the microphone is recording: speak until the time is up.</li>
           <li>Stay on this page until the end, when your answers are sent.</li>
@@ -296,7 +296,7 @@ function examShell() {
   S.done.forEach((id) => app.querySelector(`[data-q="${id}"]`)?.classList.add('done'));
 }
 
-// The graph of Questions 8–10: a table of facts, or bars with notes; and its source.
+// The graph of Questions 7–9: a table of facts, or bars with notes; and its source.
 function barsHtml(info) {
   const multi = info.series.length > 1;
   const max = Math.max(...info.rows.flatMap(([, ...vals]) => vals.map((x) => barValue(x, info.unit).v))) * 1.05;
@@ -325,9 +325,8 @@ function infoHtml(info) {
 
 const readHtml = (text) => `<div class="read-text"><p>${esc(text)}</p></div>`;
 
-// A small photo (`small` in versions.js) isn't stretched as wide as the others.
 function pictureHtml(picture) {
-  return `<figure class="picture${picture.small ? ' small' : ''}">
+  return `<figure class="picture">
     <img src="img/${esc(picture.file)}" alt="${esc(picture.alt)}" decoding="async">
     <figcaption>${esc(picture.credit)}</figcaption>
   </figure>`;
@@ -335,9 +334,29 @@ function pictureHtml(picture) {
 
 const narratorHtml = (label, text) => `<p class="narrator"><span>${esc(label)}</span>${esc(text)}</p>`;
 
+// Who the student answers as in Question 10, and what the answer has to do.
+function roleHtml(solution) {
+  return `<div class="role-card"><p class="role">${esc(solution.role)}</p>
+    <p>In your response, be sure to:</p>
+    <ul>${PARTS.solution.mustDo.map((m) => `<li>${esc(m)}</li>`).join('')}</ul></div>`;
+}
+
+// The table of the general directions, as in the sample test: each task and what it is evaluated on.
+const criteriaHtml = () => `<table class="criteria">
+    <thead><tr><th>Question</th><th>Task</th><th>Evaluation criteria</th></tr></thead>
+    <tbody>${CRITERIA.map(([q, task, list]) => {
+      const [first, ...rest] = list;
+      const lead = first.startsWith('all of the above') ? first : '';
+      const items = lead ? rest : list;
+      return `<tr><td class="q">${q}</td><td>${esc(task)}</td><td>${lead ? `<span>${esc(lead)}</span>` : ''}${
+        items.length ? `<ul>${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}</td></tr>`;
+    }).join('')}</tbody>
+  </table>`;
+
+const messageHtml = (solution) => `<div class="voice-message"><span>Voice message</span><p>${esc(solution.message)}</p></div>`;
 const questionHtml = (n, text) => `<p class="question"><span class="q-num">${n}</span>${esc(text)}</p>`;
 const topicHtml = (text) => `<p class="question topic"><span class="q-num">11</span>${esc(text)}</p>`;
-// Question 11 while it is answered.
+// Questions 10 and 11 while they are answered.
 const goneHtml = (what) => `<p class="gone">The ${what} is no longer on the screen. Answer with what you prepared.</p>`;
 
 // What the student sees at a step of version `v`. A step marked `waiting` is a
@@ -346,28 +365,30 @@ const goneHtml = (what) => `<p class="gone">The ${what} is no longer on the scre
 function taskHtml(step, v, label = who()) {
   if (step.type === 'intro') {
     return `<p class="task-label">${label}</p><h2>Speaking test</h2>
-      <p class="directions">${esc(INTRO)}</p>`;
+      <p class="directions">${esc(step.say)}</p>${criteriaHtml()}`;
   }
   const p = PARTS[step.part];
   const where = step.question ? `Question ${step.question}` : p.label;
   const head = `<p class="task-label">${esc(where)}</p><h2>${esc(p.title)}</h2>`;
   const directions = `<p class="directions"><b>Directions:</b> ${esc(p.directions)}</p>`;
-  if (step.type === 'part') return head + directions;
+  if (step.type === 'part') return head + directions + (step.part === 'solution' ? roleHtml(v.solution) : '');
   if (step.waiting) return head;
   switch (step.part) {
     case 'read':
       return head + readHtml(v.read[step.question - 1]);
     case 'picture':
-      return head + pictureHtml(v.pictures[step.question - 3]);
+      return head + pictureHtml(v.picture);
     case 'interview': {
       const n = step.question;
-      return head + narratorHtml('Interview', v.interview.narrator) + (n ? questionHtml(n, v.interview.questions[n - 5]) : '');
+      return head + narratorHtml('Interview', v.interview.narrator) + (n ? questionHtml(n, v.interview.questions[n - 4]) : '');
     }
     case 'info':
       // The graph stays to the end of the part; the caller and the questions are only heard.
       return `<div class="info-step">${head}${infoHtml(v.info)}</div>`;
+    case 'solution':
+      // The message is on the screen while they listen and prepare, and gone while they answer.
+      return head + roleHtml(v.solution) + (step.type === 'response' ? goneHtml('voice message') : messageHtml(v.solution));
     default:
-      // The topic is on the screen while they listen and prepare, and gone while they answer.
       return head + (step.type === 'response' ? goneHtml('topic') : topicHtml(v.opinion));
   }
 }
@@ -383,22 +404,21 @@ function listening(step) {
   if (step.narrator && step.part === 'interview') return { phase: 'Listen', sub: 'Interview', cue: 'Listen to the introduction.' };
   if (step.question) return { phase: `Question ${step.question}`, sub: 'Question', cue: 'Listen to the question.' };
   if (step.topic) return { phase: 'Question 11', sub: 'Topic', cue: 'Listen to the topic.' };
+  if (step.message) return { phase: 'Listen', sub: 'Message', cue: 'Listen to the message.' };
   if (step.narrator) return { phase: 'Listen', sub: 'Caller', cue: 'Listen to the caller.' };
   return { phase: 'Listen', sub: 'Directions', cue: 'Listen to the directions.' };
 }
 
 let running = false;
 
-// The pictures of the version start loading with the exam, and are kept here so they
-// stay loaded. A picture's clock doesn't start until the picture is on the screen
-// (5 seconds at most, so a picture that can't load never stops the exam).
+// The picture of the version starts loading with the exam, and is kept here so it
+// stays loaded. Its clock doesn't start until the picture is on the screen (5
+// seconds at most, so a picture that can't load never stops the exam).
 const preloaded = [];
-function preloadPictures(v) {
-  for (const picture of v.pictures) {
-    const img = new Image();
-    img.src = `img/${picture.file}`;
-    preloaded.push(img);
-  }
+function preloadPicture(v) {
+  const img = new Image();
+  img.src = `img/${v.picture.file}`;
+  preloaded.push(img);
 }
 function pictureShown(task, ms = 5000) {
   const img = task.querySelector('.picture img');
@@ -411,7 +431,7 @@ async function runExam() {
   examShell();
   keepAwake();
   const v = versionOf(S.version);
-  preloadPictures(v);
+  preloadPicture(v);
   const clock = app.querySelector('.clock');
   const recEl = app.querySelector('[data-rec]');
   if (S.stepIndex === 0) report({ type: 'start', attempt: S.attempt, student: S.student, version: S.version, demo: DEMO || SCALE < 1, startedAt: new Date().toISOString(), userAgent: navigator.userAgent });
@@ -428,7 +448,7 @@ async function runExam() {
       // New content starts at the top (on a phone, the page may be scrolled down).
       window.scrollTo({ top: 0 });
     };
-    // A text, a picture or the graph appears when its clock starts, after its cue.
+    // A text, the picture or the graph appears when its clock starts, after its cue.
     const waits = step.type === 'prep' && APPEARS_WITH_CLOCK.includes(step.part);
     show(taskHtml(waits ? { ...step, waiting: true } : step, v));
     const current = currentAnswer(step);
@@ -562,8 +582,8 @@ onUpload(({ qid, key, status, error }) => {
 // ─── teacher ────────────────────────────────────────────────────────────────
 
 // Everything a version asks, to read before the exam and while grading. The
-// teacher also sees the caller and the questions of Questions 8–10, which the
-// students only hear, and where a picture from another article comes from.
+// teacher also sees the caller and the questions of Questions 7–9, which the
+// students only hear.
 function versionHtml(v) {
   const h = (id) => `<h4>${esc(PARTS[id].label)} · ${esc(PARTS[id].title)}</h4>`;
   return `<details class="tv">
@@ -571,15 +591,17 @@ function versionHtml(v) {
     ${h('read')}
     ${v.read.map((t, i) => questionHtml(i + 1, t)).join('')}
     ${h('picture')}
-    ${v.pictures.map((p, i) => `<p class="muted small">Question ${3 + i}${p.from ? ` · a photo from the article of version ${p.from}` : ''}</p>${pictureHtml(p)}`).join('')}
+    ${pictureHtml(v.picture)}
     ${h('interview')}
     ${narratorHtml('Interview', v.interview.narrator)}
-    <ol class="tv-list" start="5">${v.interview.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ol>
+    <ol class="tv-list" start="4">${v.interview.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ol>
     ${h('info')}
     ${infoHtml(v.info)}
     ${narratorHtml('Caller (heard)', v.info.narrator)}
     <p class="muted small">The questions (heard, not shown):</p>
-    <ol class="tv-list" start="8">${v.info.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ol>
+    <ol class="tv-list" start="7">${v.info.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ol>
+    ${h('solution')}
+    ${roleHtml(v.solution)}${messageHtml(v.solution)}
     ${h('opinion')}
     ${topicHtml(v.opinion)}
     <p class="muted small">From the article by ${esc(v.article.author)}, ${esc(v.article.outlet)}, ${esc(v.article.date)}.</p>
@@ -617,7 +639,7 @@ function renderTeacher(message = '') {
     </section>
     <section class="card">
       <h2>3 · Go through the exam</h2>
-      <p>See every step as the students see it — the directions, the texts, the pictures, the graph, each question and each
+      <p>See every step as the students see it — the directions, the texts, the picture, the graph, each question and each
         clock — in any order, with the clock and the voice. Nothing is recorded or sent.</p>
       <p><a class="btn primary" href="#preview">Open the preview</a></p>
     </section>
@@ -625,8 +647,8 @@ function renderTeacher(message = '') {
       <h2>4 · The ${VERSIONS.length} versions</h2>
       <p class="muted small">One for each article. Scored with the course’s scoring guide (the «Rubric» tab of your sheet),
         ${TOTAL_POINTS} points in all: Questions 1–2 together, both readings, 5 for pronunciation (in Question 1’s score) and 5
-        for stress and intonation (in Question 2’s); Questions 3 and 4, 10 each (4 + 3 + 3); Questions 5–7, 5 each;
-        Questions 8–10, 3 each; Question 11, 5.</p>
+        for stress and intonation (in Question 2’s); Question 3, 10 (4 + 3 + 3); Questions 4–6, 5 each; Questions 7–9, 3 each;
+        Questions 10 and 11, 5 each.</p>
       ${VERSIONS.map(versionHtml).join('')}
     </section>
     <section class="card">
@@ -685,10 +707,10 @@ const PREVIEW = { version: VERSIONS[0].n, steps: timeline(VERSIONS[0].n, 1), at:
 function stepName(step) {
   if (step.type === 'intro') return 'Introduction';
   if (step.type === 'part') return 'Directions';
-  if (step.type === 'prep') return step.part === 'info' ? 'Read the graph' : step.question ? `Prepare ${step.question}` : 'Prepare';
+  if (step.type === 'prep') return step.part === 'info' ? 'Read the graph' : step.part === 'read' ? `Prepare ${step.question}` : 'Prepare';
   if (step.type === 'say') {
     if (step.narrator) return step.part === 'info' ? 'Caller' : 'Interviewer';
-    return step.question ? `Question ${step.question}` : 'Topic';
+    return step.question ? `Question ${step.question}` : step.message ? 'Message' : 'Topic';
   }
   return step.question ? `Answer ${step.question}` : 'Answer';
 }

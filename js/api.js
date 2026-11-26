@@ -1,8 +1,8 @@
 // Talks to the teacher's Google Apps Script (google-apps-script/Code.gs).
 // A text/plain POST avoids a CORS preflight; the script answers with JSON.
 
-import { SCRIPT_URL, RETIRED_URLS } from './config.js?v=202611231724';
-import { allRecordings, saveRecording } from './store.js?v=202611231724';
+import { SCRIPT_URL, RETIRED_URLS } from './config.js?v=202611260224';
+import { allRecordings, saveRecording } from './store.js?v=202611260224';
 
 const URL_RE = /^https:\/\/script\.google\.com\/(?:a\/[^/\s]+\/)?macros\/s\/[\w-]+\/(?:exec|dev)$/;
 // Not the same key as the other exams on this site: each exam keeps its own script.
